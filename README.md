@@ -1,16 +1,16 @@
-### FakeAtm
+## FakeAtm
 
 Este teste será utilizado para a avaliação técnica dos candidatos para vagas de desenvolvedores fullstack. Se você está vendo isso, parabéns você foi convidado a participar do nosso processo seletivo. Caso você tenha chegado aqui por acaso e queira uma chance ainda é possível participar do nosso processo seletivo
 
 Este teste é separado em teste para estágio e teste para desenvolvedor fulltime de todos os níveis, ou seja apenas estagiários realizaram um teste diferente, os outros níveis de júnior a sênior seram separados pelo desempenho nos teste.
 
-### O que fazer para participar
+## O que fazer para participar
 
 Crie um fork deste projeto e desenvolva sua solução em cima do seu fork. Use o README do seu repositório para nos contar a sua linha de pensamento ao resolver o teste, como você abordou os problemas encontrados quais foram suas prioridades no desenvolvimento e qualquer ação necessária para a execução do seu projeto.
 
 Lembre-se que isso é um teste técnico e como tal não existe uma única solução ótima, uma solução sub-ótima bem executada pode valer muito mais do que uma solução sub-ótima mal executada.
 
-### Crítérios de avaliação
+## Crítérios de avaliação
 
 - O cumprimento dos requisitos. Um dos pontos mais importantes de uma investida é que ela atinja seus objetivos e portanto soluções que não atendam a todos os requisitos terão nota reduzida.
 - Cumprimento do prazo estipulado. Dizer um prazo para seu projeto mostra confiança nas suas habilidades, cumpri-lo mostra competência, divergencias no prazo reduziram a sua nota
@@ -19,15 +19,15 @@ Lembre-se que isso é um teste técnico e como tal não existe uma única soluç
 - Os teste de funcionalidade. Um código testado é um código feliz e duradouro. Pontos para o candidato.
 - O uso das ferramentas. Se uma ferramenta pode cortar o seu tempo de serviço pela metade USE, se uma ferramenta for usada use bem. Pontos extra para o bom uso de versionamento ou qualquer ferramenta usada e documentada.
 
-### Descrição
+## Descrição
 
-## Contexto
+### Contexto
 
 Uma agência teve uma idéia de ATM que enviará o dinheiro para a casa dos seus cliente, para isso algumas regras precisaram ser criadas para reduzir certos custos e a idéia de pacotes foi elaborada.
 
 Esta agência precisa de uma interface gráfica para que seus clientes possam se cadastrar e operar seus pedidos.
 
-## Regras de negócio
+### Regras de negócio
 
 # Pacotes
 - Cada pacote tem um limite de notas que pode carregar
@@ -54,7 +54,7 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 - Todo cliente possui nome, endereço, data de nascimento e cpf
 - Deve ser possível criar, ler, atualizar e deletar um cliente.
 
-## Resumo de páginas
+### Resumo de páginas
 
 - Uma page de login.
 - Uma page de cadastro de cliente.
