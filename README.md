@@ -16,7 +16,7 @@ Lembre-se que isso é um teste técnico e como tal não existe uma única soluç
 - Cumprimento do prazo estipulado. Dizer um prazo para seu projeto mostra confiança nas suas habilidades, cumpri-lo mostra competência, divergencias no prazo reduziram a sua nota
 - A estrutura de dados. Imagine que essa é só uma feature de um grande sistema que revolucionará o mundo, você sabe o quão importante é uma boa estrutura, e nós sabemos que ela vale uns pontos extra.
 - A organização e legibilidade do código. Nós teremos que ler o seu código e quanto mais fácil for nos localizar e ler o seu código mais pontos nós daremos para o seu teste.
-- Os teste de funcionalidade. Um código testado é um código feliz e duradouro. Pontos para o candidato e pra grifinória.
+- Os teste de funcionalidade. Um código testado é um código feliz e duradouro. Pontos para o candidato.
 - O uso das ferramentas. Se uma ferramenta pode cortar o seu tempo de serviço pela metade USE, se uma ferramenta for usada use bem. Pontos extra para o bom uso de versionamento ou qualquer ferramenta usada e documentada.
 
 ### Descrição
