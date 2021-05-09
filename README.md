@@ -1,6 +1,6 @@
 ## FakeAtm
 
-Este teste será utilizado para a avaliação técnica dos candidatos para vagas de desenvolvedores fullstack. Se você está vendo isso, parabéns você foi convidado a participar do nosso processo seletivo. Caso você tenha chegado aqui por acaso e queira uma chance ainda é possível participar do nosso processo seletivo
+Este teste será utilizado para a avaliação técnica dos candidatos para vagas de desenvolvedores fullstack. Se você está vendo isso, parabéns você foi convidado a participar do nosso processo seletivo. Caso você tenha chegado aqui por acaso e queira uma chance ainda é possível participar do nosso processo seletivo enviando um email para rh@frentecorretora.com.br
 
 Este teste é separado em teste para estágio e teste para desenvolvedor fulltime de todos os níveis, ou seja apenas estagiários realizaram um teste diferente, os outros níveis de júnior a sênior seram separados pelo desempenho nos teste.
 
