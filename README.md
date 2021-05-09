@@ -29,7 +29,7 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 
 ### Regras de negócio
 
-# Pacotes
+### Pacotes
 - Cada pacote tem um limite de notas que pode carregar
 - Cada pacote pode conter apenas um tipo de nota (10 - 50 - 100)
 - Cada pacote contem informação das operações estão nele
@@ -39,7 +39,7 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 - Um pacote é considerado fechado uma vez que ele atinja o seu limite.
 - A leitura e listagem dos pacotes deve ser protegida por autenticação.
 
-# Operação
+### Operação
 - Toda operação possui um cliente
 - Toda operação possui um valor
 - Toda operação tem valor limite de 5000
@@ -50,11 +50,11 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 - Uma operação está concluída quando o pacote é fechado.
 - Deve ser possível criar, ler e listar operações.
 
-# Cliente
+### Cliente
 - Todo cliente possui nome, endereço, data de nascimento e cpf
 - Deve ser possível criar, ler, atualizar e deletar um cliente.
 
-### Resumo de páginas
+## Resumo de páginas
 
 - Uma page de login.
 - Uma page de cadastro de cliente.
