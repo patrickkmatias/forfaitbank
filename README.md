@@ -8,7 +8,7 @@ Este teste é separado em teste para estágio e teste para desenvolvedor fulltim
 
 Crie um fork deste projeto e desenvolva sua solução em cima do seu fork. Use o README do seu repositório para nos contar a sua linha de pensamento ao resolver o teste, como você abordou os problemas encontrados quais foram suas prioridades no desenvolvimento e qualquer ação necessária para a execução do seu projeto.
 
-Lembre-se que isso é um teste técnico e como tal não existe uma única solução ótima, uma solução sub-ótima bem executada pode valer muito mais do que uma solução sub-ótima mal executada.
+Lembre-se que isso é um teste técnico e como tal não existe uma única solução ótima, uma solução sub-ótima bem executada pode valer muito mais do que uma solução ótima mal executada.
 
 ## Crítérios de avaliação
 
