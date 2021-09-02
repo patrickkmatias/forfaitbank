@@ -30,7 +30,7 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 ### Regras de negócio
 
 ### Pacotes
-- Cada pacote tem um limite de notas que pode carregar
+- Cada pacote tem um limite de notas que pode carregar (50 notas)
 - Cada pacote pode conter apenas um tipo de nota (10 - 50 - 100)
 - Cada pacote contem informação das operações estão nele
 - Quando esse pacote foi aberto
