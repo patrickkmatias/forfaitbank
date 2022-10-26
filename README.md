@@ -1,6 +1,6 @@
 # forfaitBank 💸
 
-*Teste admissional Frente - Corretora de Cãmbio*
+*Teste admissional Frente - Corretora de Câmbio*
 
 O projeto será desenvolvido em 4 dias úteis partindo inicialmente do front-end para o back-end.
 
