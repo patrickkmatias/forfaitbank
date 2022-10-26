@@ -2,7 +2,7 @@
 
 *Teste admissional Frente - Corretora de Câmbio*
 
-O projeto será desenvolvido em 4 dias úteis partindo inicialmente do front-end para o back-end.
+O projeto será desenvolvido em 4 dias úteis (31/10/2022 - 18:00) partindo inicialmente do front-end para o back-end.
 
 Nele é utilizado as seguintes tecnologias:
 
