@@ -1,4 +1,4 @@
-# forfaitBank 💸
+# forfaitBank 🧳
 
 *Teste admissional Frente - Corretora de Câmbio*
 
