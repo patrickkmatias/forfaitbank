@@ -7,7 +7,7 @@ import { createMask } from '@ngneat/input-mask';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
   host: {
-    class: 'w-full h-full'
+    class: 'w-full h-fit'
   }
 })
 export class RegisterFormComponent implements OnInit {

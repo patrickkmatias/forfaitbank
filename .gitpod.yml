@@ -1,0 +1,3 @@
+tasks:
+  - init: npm install && npm i @angular/cli
+    command: npm run start
