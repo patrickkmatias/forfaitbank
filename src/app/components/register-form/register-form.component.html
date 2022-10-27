@@ -1,0 +1,110 @@
+<form>
+  <div>
+    <label for="name" class="mt-12 sm:mt-4 block text-sm font-medium text-white"
+      >Nome</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        name="name"
+        id="name"
+        formControlName="name"
+        type="text"
+        required
+        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        placeholder="Seu nome completo"
+      />
+    </div>
+  </div>
+  <div>
+    <label for="email" class="mt-4 block text-sm font-medium text-white"
+      >Email</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        name="email"
+        id="email"
+        formControlName="email"
+        type="email"
+        autocomplete="email"
+        required
+        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        placeholder="patrick@forfait.org"
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      for="street-address"
+      class="mt-4 block text-sm font-medium text-white"
+      >Endereço</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        type="text"
+        name="street-address"
+        formControlName="street-address"
+        id="street-address"
+        autocomplete="street-address"
+        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        placeholder="Rua Cinco de Julho, Guarulhos"
+      />
+    </div>
+  </div>
+  <div>
+    <label for="cpf" class="mt-4 block text-sm font-medium text-white"
+      >CPF</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        type="text"
+        name="cpf"
+        id="cpf"
+        formControlName="cpf"
+        autocomplete="street-address"
+        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        [inputMask]="cpfMask"
+        placeholder="485.345.993-08"
+      />
+    </div>
+  </div>
+  <div>
+    <label for="date" class="mt-4 block text-sm font-medium text-white"
+      >Data de nascimento</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        type="date"
+        name="date"
+        id="date"
+        formControlName="date"
+        autocomplete="date"
+        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        placeholder="22/11/2003"
+        max="2003-12-31"
+      />
+    </div>
+  </div>
+  <div>
+    <label for="password" class="mt-4 block text-sm font-medium text-white"
+      >Senha</label
+    >
+    <div class="relative mt-1 rounded-md shadow-sm">
+      <input
+        name="password"
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="current-password"
+        required
+        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        placeholder="••••••••"
+      />
+    </div>
+  </div>
+  <button
+    (click)="submitForm()"
+    class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+  >
+    Fazer cadastro
+  </button>
+</form>

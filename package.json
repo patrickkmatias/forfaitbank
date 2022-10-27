@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@ngneat/input-mask": "^5.2.0",
+    "inputmask": "5.0.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -27,6 +29,7 @@
     "@angular/cli": "~14.2.6",
     "@angular/compiler-cli": "^14.2.0",
     "@tailwindcss/forms": "^0.5.3",
+    "@types/inputmask": "5.0.0",
     "@types/jasmine": "~4.0.0",
     "autoprefixer": "^10.4.12",
     "jasmine-core": "~4.3.0",
