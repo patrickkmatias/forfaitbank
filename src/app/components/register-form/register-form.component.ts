@@ -43,7 +43,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   setupEditMode() {
-    document.querySelector('button')!.innerText = 'Editar conta';
+    let submitButton =  document.querySelector('#submitButton') as HTMLElement;
+    submitButton.innerText = 'Editar conta';
   }
 
   closeForm() {
