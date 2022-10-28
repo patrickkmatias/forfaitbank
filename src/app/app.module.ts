@@ -7,13 +7,17 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { InputMaskModule } from '@ngneat/input-mask';
+import { PainelComponent } from './pages/painel/painel.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    PainelComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

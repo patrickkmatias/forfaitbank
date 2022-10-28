@@ -1,0 +1,43 @@
+<article
+  *ngIf="edit==false"
+  class="w-full flex flex-col items-center justify-between"
+  style="grid-area: profile"
+>
+  <ul class="self-start ml-6">
+    <h2 class="mb-4 font-bold">Dados da sua conta:</h2>
+    <li class="mb-4">
+      <p class="font-semibold">Nome completo:</p>
+      Patrick Matias da Silva
+    </li>
+    <li class="mb-4">
+      <p class="font-semibold">Email:</p>
+      patrick@forfait.org
+    </li>
+    <li class="mb-4">
+      <p class="font-semibold">Endereço:</p>
+      Rua Cinco de Julho, Guarulhos
+    </li>
+    <li class="mb-4">
+      <p class="font-semibold">CPF:</p>
+      485.345.993-08
+    </li>
+    <li class="mb-4">
+      <p class="font-semibold">Data de nascimento:</p>
+      22/11/2003
+    </li>
+  </ul>
+  <div class="flex self-start ml-6">
+    <button
+      (click)="edit=true"
+      class="group relative flex w-fit justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+    >
+      Editar dados
+    </button>
+    <button
+      class="group relative flex ml-6 w-fit justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-300 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+    >
+      Deletar conta
+    </button>
+  </div>
+</article>
+<app-register-form *ngIf="edit==true"></app-register-form>
