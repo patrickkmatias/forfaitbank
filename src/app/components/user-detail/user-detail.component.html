@@ -1,5 +1,5 @@
 <article
-  *ngIf="edit==false"
+  *ngIf="edit == false"
   class="w-full flex flex-col items-center justify-between"
   style="grid-area: profile"
 >
@@ -28,16 +28,20 @@
   </ul>
   <div class="flex self-start ml-6">
     <button
-      (click)="edit=true"
+      (click)="edit = true"
       class="group relative flex w-fit justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
     >
       Editar dados
     </button>
     <button
-      class="group relative flex ml-6 w-fit justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-300 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+      class="group relative flex ml-6 w-fit justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-500"
     >
       Deletar conta
     </button>
   </div>
 </article>
-<app-register-form *ngIf="edit==true"></app-register-form>
+<app-register-form
+  *ngIf="edit == true"
+  (closeFormEvent)="edit = !$event"
+  [isEditMode]="true"
+></app-register-form>

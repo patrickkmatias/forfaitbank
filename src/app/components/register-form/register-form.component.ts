@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
 
@@ -12,6 +12,10 @@ import { createMask } from '@ngneat/input-mask';
 })
 export class RegisterFormComponent implements OnInit {
 
+  @Input() isEditMode = false;
+
+  @Output() closeFormEvent = new EventEmitter<boolean>();
+
   form: FormGroup | undefined;
 
   cpfMask = createMask('999.999.999-99');
@@ -19,7 +23,12 @@ export class RegisterFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
     this.initRegisterForm();
+
+    if(this.isEditMode) {
+      this.setupEditMode();
+    }
   }
 
   initRegisterForm() {
@@ -31,6 +40,14 @@ export class RegisterFormComponent implements OnInit {
       date: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
     })
+  }
+
+  setupEditMode() {
+    document.querySelector('button')!.innerText = 'Editar conta';
+  }
+
+  closeForm() {
+    this.closeFormEvent.emit(true)
   }
 
   submitForm() {

@@ -1,6 +1,14 @@
-<form>
+<form class="px-16">
+  <h2 *ngIf="isEditMode; else elseBlock" class="mt-6 text-center text-3xl font-bold tracking-tight text-emerald-100">
+    Editar conta
+  </h2>
+  <ng-template #elseBlock>
+    <h2 class="mt-12 text-center text-3xl font-bold tracking-tight text-emerald-100">
+      Cadastrar conta
+    </h2>
+  </ng-template>
   <div>
-    <label for="name" class="mt-12 sm:mt-4 block text-sm font-medium text-white"
+    <label for="name" class="mt-8 sm:mt-4 block text-sm font-medium text-white"
       >Nome</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -106,5 +114,11 @@
     class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
   >
     Fazer cadastro
+  </button>
+  <button
+    (click)="closeForm()"
+    class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+  >
+    Voltar
   </button>
 </form>

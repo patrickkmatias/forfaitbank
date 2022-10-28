@@ -42,5 +42,7 @@ background-color: #064e3b;
 }
 
 ::-webkit-scrollbar-thumb {
-background-color: #059669; 
+background-color: #34d399; 
+box-shadow: inset 0 0 6px #00000030;
+border-radius: 10px;
 }
