@@ -2,7 +2,7 @@
   class="w-full h-full flex sm:flex-row-reverse flex-col justify-around space-y-8"
 >
   <h1
-    class="sm:w-2/3 w-full h-full flex justify-center items-center bg-emerald-200 !text-[40vw] sm:!text-[200px] text-center pt-6"
+    class="sm:w-2/3 w-full h-2/4 sm:h-full flex justify-center items-center bg-emerald-200 !text-[40vw] sm:!text-[200px] text-center pt-6"
   >
     🧳
   </h1>
@@ -15,7 +15,7 @@
     <app-register-form
       *ngIf="showRegisterForm"
       (closeFormEvent)="showRegisterForm = !$event"
-      class="pt-24"
+      class="pt-80 sm:pt-24"
     ></app-register-form>
 
     <button
