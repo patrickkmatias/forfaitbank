@@ -1,1 +1,67 @@
-<p>operation works!</p>
+<li
+*ngIf="!_showDetail"
+  id="{{ id }}"
+  class="w-full h-auto relative p-4 flex justify-between bg-emerald-800"
+>
+  <div>
+    <h2 class="mb-2 text-xl font-medium text-emerald-100">Operação {{ id }}</h2>
+    <p>Valor: {{ 200 | currency: "BRL" }}</p>
+    <p>Notas requisitadas: 10, 50</p>
+  </div>
+  <button
+    id="operationDetailButton"
+    (click)="showDetail()"
+    title="Ver mais informações da operação"
+    class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+      />
+    </svg>
+  </button>
+</li>
+
+<!-- Operation Detail View -->
+
+<li
+  *ngIf="_showDetail"
+  id="{{ id }}"
+  class="w-full h-full sticky top-0 left-0 z-40 p-4 flex justify-between bg-emerald-800"
+>
+  <div>
+    <h2 class="mb-2 text-xl font-medium text-emerald-100">Operação {{ id }}</h2>
+    <p>Valor: {{ 200 | currency: "BRL" }}</p>
+    <p>Notas requisitadas: 10, 50</p>
+  </div>
+  <button
+    id="operationDetailButton"
+    (click)="closeDetail()"
+    title="Ver mais informações da operação"
+    class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      />
+    </svg>
+  </button>
+</li>

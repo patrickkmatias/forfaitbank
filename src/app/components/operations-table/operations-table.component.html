@@ -1,1 +1,50 @@
-<p>operations-table works!</p>
+<section class="w-full h-auto mb-8 flex flex-col items-center">
+  <div class="w-full px-8 sm:px-16 pb-2 self-start flex justify-between">
+    <h1 class="text-2xl font-semibold tracking-wide text-emerald-100">
+      Suas operações
+    </h1>
+    <button
+      id="addOperationButton"
+      title="Criar nova operação"
+      class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 6v12m6-6H6"
+        />
+      </svg>
+    </button>
+  </div>
+  <ul
+    class="w-11/12 h-[60vh] relative top-0 left-0 bg-emerald-900 rounded-xl overflow-x-hidden overflow-y-auto"
+  >
+    <app-operation
+      [id]="1"
+      (showDetailEvent)="toggleDetail($event, 1)"
+    ></app-operation>
+    <app-operation [id]="2"></app-operation>
+    <app-operation [id]="3"></app-operation>
+    <app-operation [id]="4"></app-operation>
+    <app-operation
+      [id]="5"
+      (showDetailEvent)="toggleDetail($event, 5)"
+    ></app-operation>
+    <div
+      class="w-full h-[10%] sticky z-10 bottom-0 bg-gradient-to-t from-black to-transparent opacity-20"
+    ></div>
+  </ul>
+  <button
+    class="relative w-4/5 rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors duration-500"
+  >
+    Fazer nova operação
+  </button>
+</section>
