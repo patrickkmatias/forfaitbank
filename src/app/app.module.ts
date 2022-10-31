@@ -9,6 +9,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { InputMaskModule } from '@ngneat/input-mask';
 import { PainelComponent } from './pages/painel/painel.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { OperationComponent } from './components/operation/operation.component';
+import { OperationsTableComponent } from './components/operations-table/operations-table.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     RegisterFormComponent,
     LoginFormComponent,
     PainelComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    OperationComponent,
+    OperationsTableComponent
   ],
   imports: [
     BrowserModule,

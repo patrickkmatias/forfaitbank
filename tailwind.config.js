@@ -15,6 +15,10 @@ module.exports = {
     "./src/app/components/register-form/register-form.component.css",
     "./src/app/components/user-detail/user-detail.component.html",
     "./src/app/components/user-detail/user-detail.component.css",
+    "./src/app/components/operation/operation.component.html",
+    "./src/app/components/operation/operation.component.css",
+    "./src/app/components/operations-table/operations-table.component.html",
+    "./src/app/components/operations-table/operations-table.component.css",
   ],
   theme: {
     extend: {},
