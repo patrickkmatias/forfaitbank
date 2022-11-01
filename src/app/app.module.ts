@@ -11,6 +11,7 @@ import { PainelComponent } from './pages/painel/painel.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { OperationComponent } from './components/operation/operation.component';
 import { OperationsTableComponent } from './components/operations-table/operations-table.component';
+import { OperationFormComponent } from './components/operation-form/operation-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OperationsTableComponent } from './components/operations-table/operatio
     PainelComponent,
     UserDetailComponent,
     OperationComponent,
-    OperationsTableComponent
+    OperationsTableComponent,
+    OperationFormComponent
   ],
   imports: [
     BrowserModule,

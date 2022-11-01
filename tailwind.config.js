@@ -19,6 +19,8 @@ module.exports = {
     "./src/app/components/operation/operation.component.css",
     "./src/app/components/operations-table/operations-table.component.html",
     "./src/app/components/operations-table/operations-table.component.css",
+    "./src/app/components/operation-form/operation-form.component.html",
+    "./src/app/components/operation-form/operation-form.component.css",
   ],
   theme: {
     extend: {},
