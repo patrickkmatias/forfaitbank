@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationsTableComponent implements OnInit {
 
+  showAddForm = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -27,6 +29,37 @@ export class OperationsTableComponent implements OnInit {
         }
       })
       
+    }
+
+    toggleAddOperationView() {
+
+      if (!this.showAddForm) {
+        
+        this.toggleDetail(true, -1)
+        
+        document.getElementById('endDarkGradient')!.style.display = 'none';
+        document.getElementById('operationsTable')!.style.display = 'none';
+    
+        document.getElementById('addOperationButton')!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+
+        this.showAddForm = true;
+
+      }
+      else
+      {
+        this.toggleDetail(false, -1)
+        
+        document.getElementById('endDarkGradient')!.style.display = 'initial';
+        document.getElementById('operationsTable')!.style.display = 'initial';
+
+    
+        document.getElementById('addOperationButton')!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>`;
+
+        this.showAddForm = false;
+      }
+
     }
 
 }
