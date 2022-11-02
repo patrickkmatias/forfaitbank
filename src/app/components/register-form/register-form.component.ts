@@ -16,7 +16,7 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() closeFormEvent = new EventEmitter<boolean>();
 
-  form: FormGroup | undefined;
+  form!: FormGroup;
 
   cpfMask = createMask('999.999.999-99');
 
@@ -34,10 +34,10 @@ export class RegisterFormComponent implements OnInit {
   initRegisterForm() {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
-      "street-address": new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      address: new FormControl(null, [Validators.required]),
       cpf: new FormControl(null, [Validators.required]),
-      date: new FormControl(null, [Validators.required]),
+      birthdate: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
     })
   }
