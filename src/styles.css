@@ -62,3 +62,46 @@ background-color: #34d399;
 box-shadow: inset 0 0 6px #00000030;
 border-radius: 10px;
 }
+
+/* Loading three dots */
+
+:root {
+  --point-color: #555;
+  --size: 5px;
+}
+
+.loader {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  align-content: center; 
+  justify-content: center;  
+  z-index: 100000;
+}
+
+.loader__element {
+  border-radius: 100%;
+  width: 5px;
+  height: 5px;
+  margin: 0 5px;
+  background: gainsboro;
+}
+
+.loader__element:nth-child(1) {
+  animation: preloader .6s ease-in-out alternate infinite;
+}
+.loader__element:nth-child(2) {
+  animation: preloader .6s ease-in-out alternate .2s infinite;
+}
+
+.loader__element:nth-child(3) {
+  animation: preloader .6s ease-in-out alternate .4s infinite;
+}
+
+@keyframes preloader {
+  100% { transform: scale(2); }
+}
