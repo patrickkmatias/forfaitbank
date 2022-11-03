@@ -10,12 +10,26 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
+  private _apiUrl = "https://forfaitbank-api.herokuapp.com/public/api";
+
   registerUser(user: User): Observable<User> { 
-    return this.http.post<User>('https://forfaitbank-api.herokuapp.com/public/api/register', user);
+    return this.http.post<User>(`${this._apiUrl}/register`, user);
   }
 
   loginUser(user: User): Observable<User> {
-    return this.http.post<User>('https://forfaitbank-api.herokuapp.com/public/api/login', user);
+    return this.http.post<User>(`${this._apiUrl}/login`, user);
+  }
+
+  isLoggedIn(): boolean {
+    return (localStorage.getItem('isLoggedIn') == 'true') ? true : false;
+  }
+
+  login() {
+    return localStorage.setItem('isLoggedIn', 'true');
+  }
+
+  logout() {
+    return localStorage.setItem('isLoggedIn', 'false');
   }
 
 }

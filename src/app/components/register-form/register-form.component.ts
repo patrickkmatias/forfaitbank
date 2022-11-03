@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
+import { take } from 'rxjs';
+import { UIFeedbackService } from 'src/app/services/uifeedback.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-register-form',
@@ -13,14 +16,15 @@ import { createMask } from '@ngneat/input-mask';
 export class RegisterFormComponent implements OnInit {
 
   @Input() isEditMode = false;
-
   @Output() closeFormEvent = new EventEmitter<boolean>();
 
   form!: FormGroup;
-
   cpfMask = createMask('999.999.999-99');
-
-  constructor() { }
+  
+  constructor(
+    public ui: UIFeedbackService,
+    private auth: AuthenticationService, 
+    ) { }
 
   ngOnInit(): void {
 
@@ -42,17 +46,42 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  setupEditMode() {
-    let submitButton =  document.querySelector('#submitButton') as HTMLElement;
-    submitButton.innerText = 'Editar conta';
+  setupEditMode(): void {
   }
 
-  closeForm() {
+  closeForm(): void {
     this.closeFormEvent.emit(true)
   }
-
+  
   submitForm() {
-    console.log(this.form!.value)
+
+    let button = document.querySelector('#submitButton')! as HTMLElement;
+
+    /** Object with methods to setup UI feedback accordingly response. */
+    let subscribeResponse = {
+      complete: () => {
+
+        this.ui.buttonLoading.dismiss(button);
+        this.ui.feedback = 'success';
+        this.ui.timer(5, this.closeForm.bind(this))
+
+      },
+      error: (err: unknown) => {
+
+        this.ui.buttonLoading.dismiss(button);
+        this.ui.feedback = 'error';
+        this.ui.timer(5, () => this.ui.feedback = undefined)
+        
+        console.log('ew, error', err);
+
+      }
+    }
+
+    this.ui.buttonLoading.create(button);
+
+    // send user data to Laravel API and returns a partial observer of the user
+    this.auth.registerUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
+
   }
 
 }
