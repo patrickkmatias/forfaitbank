@@ -8,7 +8,7 @@ Nele é utilizado as seguintes tecnologias:
 
 - Angular;
 - Tailwind CSS para estilização;
-- Laravel para API REST;
+- [Laravel para API REST](https://github.com/pmattheew/forfaitbank-api);
 - MySQL para banco de dados.
 
 Não possui testes unitários, pois ainda não tive a oportunidade de aprender adequadamente.
