@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-painel',
@@ -10,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['login']).then(() => {location.reload()});
   }
 
 }
