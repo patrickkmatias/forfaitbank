@@ -31,17 +31,10 @@
       class="w-full h-[60vh] relative top-0 left-0 overflow-x-hidden overflow-y-auto"
     >
       <app-operation
-        id="1"
-        [opId]="1"
-        (showDetailEvent)="toggleDetail($event, 1)"
-      ></app-operation>
-      <app-operation id="2" [opId]="2"></app-operation>
-      <app-operation id="3" [opId]="3"></app-operation>
-      <app-operation id="4" [opId]="4"></app-operation>
-      <app-operation
-        id="5"
-        [opId]="5"
-        (showDetailEvent)="toggleDetail($event, 5)"
+        *ngFor="let op of operations"
+        id="{{ op.id }}"
+        [opId]="op.id"
+        (showDetailEvent)="toggleDetail($event, op.id)"
       ></app-operation>
     </ul>
     <app-operation-form *ngIf="showAddForm" class="w-full h-[60vh]"></app-operation-form>
