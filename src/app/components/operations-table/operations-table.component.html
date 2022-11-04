@@ -31,14 +31,16 @@
       class="w-full h-[60vh] relative top-0 left-0 overflow-x-hidden overflow-y-auto"
     >
       <app-operation
-        [id]="1"
+        id="1"
+        [opId]="1"
         (showDetailEvent)="toggleDetail($event, 1)"
       ></app-operation>
-      <app-operation [id]="2"></app-operation>
-      <app-operation [id]="3"></app-operation>
-      <app-operation [id]="4"></app-operation>
+      <app-operation id="2" [opId]="2"></app-operation>
+      <app-operation id="3" [opId]="3"></app-operation>
+      <app-operation id="4" [opId]="4"></app-operation>
       <app-operation
-        [id]="5"
+        id="5"
+        [opId]="5"
         (showDetailEvent)="toggleDetail($event, 5)"
       ></app-operation>
     </ul>

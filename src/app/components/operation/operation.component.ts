@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class OperationComponent implements OnInit {
 
-  @Input() id:number = 0;
+  @Input() opId:number = 0;
 
   @Output() showDetailEvent = new EventEmitter<boolean>();
 

@@ -23,7 +23,7 @@ export class OperationsTableComponent implements OnInit {
       
       allOperations.forEach(op => {
         // if the id is different from the parameter id, put display none|block
-        if(Number(op.getAttribute('ng-reflect-id')) != id) {
+        if(Number(op.getAttribute('id')) != id) {
           let _op = op as HTMLElement;
           _op.style.display = displayProp;
         }
