@@ -19,6 +19,8 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@ngneat/input-mask": "^5.2.0",
+    "@types/gsap": "^3.0.0",
+    "gsap": "^3.11.3",
     "inputmask": "5.0.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
