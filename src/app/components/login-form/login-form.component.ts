@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-login-form',
@@ -15,6 +16,8 @@ import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  @Output() closeFormEvent = new EventEmitter();
+
   form!: FormGroup;
 
   constructor(
@@ -24,6 +27,12 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+    gsap.from('form', {
+      opacity: 0,
+      duration: 1,
+    })
+
     this.initLoginForm();
   }
 
@@ -75,6 +84,14 @@ export class LoginFormComponent implements OnInit {
     // send user data to Laravel API and returns a partial observer of the user
     this.auth.loginUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
 
+  }
+
+  closeForm() {
+    gsap.to('form', {
+      opacity: 0,
+      duration: 1,
+      onComplete: () => this.closeFormEvent.emit(true)
+    })
   }
 
 }

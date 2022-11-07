@@ -68,7 +68,17 @@
     class="w-full h-fit p-4 mt-6 rounded-md text-gray-200 text-center font-bold bg-red-700"
   >
     <p>Ops! Erro ao fazer login.</p>
-    <p class="mt-2 text-xs font-light">Verifique seu email/senha e tente novamente ({{ ui.seconds }}).</p>
+    <p class="mt-2 text-xs font-light">
+      Verifique seu email/senha e tente novamente ({{ ui.seconds }}).
+    </p>
   </div>
   <!-- END - Form submit result feedback -->
+  <button
+    id="showRegisterFormButton"
+    (click)="closeForm()"
+    class="relative w-full rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
+  >
+    Não tem conta? <br />
+    Faça seu cadastro!
+  </button>
 </form>
