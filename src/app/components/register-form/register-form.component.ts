@@ -4,6 +4,7 @@ import { createMask } from '@ngneat/input-mask';
 import { take } from 'rxjs';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-register-form',
@@ -28,6 +29,11 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    gsap.from('form', {
+      opacity: 0,
+      duration: 1,
+    })
+
     this.initRegisterForm();
 
     if(this.isEditMode) {
@@ -50,7 +56,13 @@ export class RegisterFormComponent implements OnInit {
   }
 
   closeForm(): void {
-    this.closeFormEvent.emit(true)
+
+    gsap.to('form', {
+      opacity: 0,
+      duration: 1,
+      onComplete: () => this.closeFormEvent.emit(true)
+    })
+
   }
   
   submitForm() {
