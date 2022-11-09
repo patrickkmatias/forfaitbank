@@ -37,7 +37,7 @@
         (showDetailEvent)="toggleDetail($event, op.id)"
       ></app-operation>
     </ul>
-    <app-operation-form *ngIf="showAddForm" class="w-full h-[60vh]"></app-operation-form>
+    <app-operation-form *ngIf="showAddForm" class="w-full h-[60vh] relative z-40"></app-operation-form>
     <div
       id="endDarkGradient"
       class="w-full h-[10%] absolute z-10 bottom-0 bg-gradient-to-t from-black to-transparent opacity-20"
