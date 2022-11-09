@@ -12,10 +12,12 @@
     style="overflow-y: overlay"
   >
     <app-login-form
+      class="w-full h-fit"
       *ngIf="!showRegisterForm"
       (closeFormEvent)="showRegisterForm = $event"
     ></app-login-form>
     <app-register-form
+      class="w-full h-fit"
       *ngIf="showRegisterForm"
       (closeFormEvent)="showRegisterForm = !$event"
       class="pt-80 sm:pt-24"

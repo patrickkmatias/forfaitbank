@@ -10,9 +10,6 @@ import { gsap } from 'gsap';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  host: {
-    class: 'w-full h-fit'
-  }
 })
 export class LoginFormComponent implements OnInit {
 
@@ -27,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     gsap.from('form', {
       opacity: 0,
       duration: 1,
@@ -45,7 +42,7 @@ export class LoginFormComponent implements OnInit {
           ]
         ),
       password: new FormControl(
-          {value: '', disabled: false}, 
+          {value: '', disabled: false},
           Validators.required
         ),
     });
@@ -58,7 +55,7 @@ export class LoginFormComponent implements OnInit {
     /** Object with methods to setup UI feedback accordingly response. */
     let subscribeResponse = {
       complete: () => {
-        
+
         this.auth.login();
 
         this.ui.buttonLoading.dismiss(button);
@@ -73,7 +70,7 @@ export class LoginFormComponent implements OnInit {
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
-        
+
         console.log('ew, error', err);
 
       }

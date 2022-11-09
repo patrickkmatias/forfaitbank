@@ -10,9 +10,6 @@ import { gsap } from 'gsap';
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
-  host: {
-    class: 'w-full h-fit'
-  }
 })
 export class RegisterFormComponent implements OnInit {
 
@@ -21,10 +18,10 @@ export class RegisterFormComponent implements OnInit {
 
   form!: FormGroup;
   cpfMask = createMask('999.999.999-99');
-  
+
   constructor(
     public ui: UIFeedbackService,
-    private auth: AuthenticationService, 
+    private auth: AuthenticationService,
     ) { }
 
   ngOnInit(): void {
@@ -64,7 +61,7 @@ export class RegisterFormComponent implements OnInit {
     })
 
   }
-  
+
   submitForm() {
 
     let button = document.querySelector('#submitButton')! as HTMLElement;
@@ -83,7 +80,7 @@ export class RegisterFormComponent implements OnInit {
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
-        
+
         console.log('ew, error', err);
 
       }
