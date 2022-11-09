@@ -4,14 +4,12 @@ import { createMask } from '@ngneat/input-mask';
 import { take } from 'rxjs';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
-  host: {
-    class: 'w-full h-fit'
-  }
 })
 export class RegisterFormComponent implements OnInit {
 
@@ -20,13 +18,18 @@ export class RegisterFormComponent implements OnInit {
 
   form!: FormGroup;
   cpfMask = createMask('999.999.999-99');
-  
+
   constructor(
     public ui: UIFeedbackService,
-    private auth: AuthenticationService, 
+    private auth: AuthenticationService,
     ) { }
 
   ngOnInit(): void {
+
+    gsap.from('form', {
+      opacity: 0,
+      duration: 1,
+    })
 
     this.initRegisterForm();
 
@@ -50,9 +53,15 @@ export class RegisterFormComponent implements OnInit {
   }
 
   closeForm(): void {
-    this.closeFormEvent.emit(true)
+
+    gsap.to('form', {
+      opacity: 0,
+      duration: 1,
+      onComplete: () => this.closeFormEvent.emit(true)
+    })
+
   }
-  
+
   submitForm() {
 
     let button = document.querySelector('#submitButton')! as HTMLElement;
@@ -71,7 +80,7 @@ export class RegisterFormComponent implements OnInit {
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
-        
+
         console.log('ew, error', err);
 
       }

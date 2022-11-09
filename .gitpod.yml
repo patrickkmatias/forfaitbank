@@ -1,3 +1,5 @@
 tasks:
-  - init: npm install && npm i -g @angular/cli
+  - name: Install dependencies
+    init: npm i && npm i -g @angular/cli
     command: npm run start
+    openMode: split-left

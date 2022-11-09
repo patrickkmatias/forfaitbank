@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  host: {
-    class: 'w-full h-fit'
-  }
 })
 export class LoginFormComponent implements OnInit {
+
+  @Output() closeFormEvent = new EventEmitter();
 
   form!: FormGroup;
 
@@ -24,6 +24,12 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    gsap.from('form', {
+      opacity: 0,
+      duration: 1,
+    })
+
     this.initLoginForm();
   }
 
@@ -36,7 +42,7 @@ export class LoginFormComponent implements OnInit {
           ]
         ),
       password: new FormControl(
-          {value: '', disabled: false}, 
+          {value: '', disabled: false},
           Validators.required
         ),
     });
@@ -49,7 +55,7 @@ export class LoginFormComponent implements OnInit {
     /** Object with methods to setup UI feedback accordingly response. */
     let subscribeResponse = {
       complete: () => {
-        
+
         this.auth.login();
 
         this.ui.buttonLoading.dismiss(button);
@@ -64,7 +70,7 @@ export class LoginFormComponent implements OnInit {
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
-        
+
         console.log('ew, error', err);
 
       }
@@ -75,6 +81,14 @@ export class LoginFormComponent implements OnInit {
     // send user data to Laravel API and returns a partial observer of the user
     this.auth.loginUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
 
+  }
+
+  closeForm() {
+    gsap.to('form', {
+      opacity: 0,
+      duration: 1,
+      onComplete: () => this.closeFormEvent.emit(true)
+    })
   }
 
 }
