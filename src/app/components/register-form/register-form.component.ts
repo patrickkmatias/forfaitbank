@@ -10,6 +10,7 @@ import { gsap } from 'gsap';
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
+  providers: [UIFeedbackService]
 })
 export class RegisterFormComponent implements OnInit {
 

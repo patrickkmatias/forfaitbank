@@ -10,6 +10,7 @@ import { gsap } from 'gsap';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
+  providers: [UIFeedbackService]
 })
 export class LoginFormComponent implements OnInit {
 

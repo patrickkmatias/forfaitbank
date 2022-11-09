@@ -1,8 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UIFeedbackService {
 
   feedback?:string = undefined;
@@ -13,7 +11,7 @@ export class UIFeedbackService {
    * Object with methods to create and dismiss loading animation inside buttons.
    */
   buttonLoading = {
-    threeDotsLoading: 
+    threeDotsLoading:
     `<div class="loader">
       <span class="loader__element"></span>
       <span class="loader__element"></span>
@@ -57,7 +55,7 @@ export class UIFeedbackService {
     }, 1000)
 
     setTimeout(() => {
-      callback();      
+      callback();
     }, seconds * 1000);
 
   }
