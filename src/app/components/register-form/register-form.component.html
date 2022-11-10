@@ -135,7 +135,7 @@
     *ngIf="ui.feedback == 'success'"
     class="w-full h-fit p-4 mt-6 rounded-md text-emerald-100 text-center font-bold bg-emerald-900"
   >
-    <p>Usuário {{ isEditMode ? "editado" : "cadastrado" }} com sucesso! ;)</p>
+    <p>Usuário {{ isEditMode ? "editado" : "cadastrado" }} com sucesso! =)</p>
     <p class="mt-2 text-xs font-light">
       Voltando para a página anterior em {{ ui.seconds }} seg.
     </p>
@@ -144,9 +144,9 @@
     *ngIf="ui.feedback == 'error'"
     class="w-full h-fit p-4 mt-6 rounded-md text-gray-200 text-center font-bold bg-red-700"
   >
-    <p>
-      Erro ao {{ isEditMode ? "editar" : "cadastrar" }} usuário. Verifique os
-      campos e tente novamente ({{ ui.seconds }}).
+    <p>Ops! Tivemos um problema ao {{ isEditMode ? "editar" : "cadastrar" }} o usuário =(</p>
+    <p class="mt-2 text-xs font-light">
+      Verifique os campos e tente novamente ({{ ui.seconds }}).
     </p>
   </div>
   <!-- END - Form submit result feedback -->
