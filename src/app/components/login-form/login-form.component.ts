@@ -28,7 +28,7 @@ export class LoginFormComponent implements OnInit {
 
     gsap.from('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
     })
 
     this.initLoginForm();
@@ -87,7 +87,7 @@ export class LoginFormComponent implements OnInit {
   closeForm() {
     gsap.to('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       onComplete: () => this.closeFormEvent.emit(true)
     })
   }
