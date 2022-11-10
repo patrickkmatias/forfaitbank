@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
@@ -14,6 +14,7 @@ import { gsap } from 'gsap';
 })
 export class LoginFormComponent implements OnInit {
 
+  @ViewChild('registerButton') rbutton!: ElementRef;
   @Output() closeFormEvent = new EventEmitter();
 
   form!: FormGroup;
@@ -21,7 +22,8 @@ export class LoginFormComponent implements OnInit {
   constructor(
     public ui: UIFeedbackService,
     private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ export class LoginFormComponent implements OnInit {
 
         this.auth.login();
 
+        this.renderer.removeAttribute(this.rbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'success';
         this.ui.timer(3, () => this.router.navigate(['painel']));
@@ -68,6 +71,7 @@ export class LoginFormComponent implements OnInit {
 
         this.auth.logout();
 
+        this.renderer.removeAttribute(this.rbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
@@ -78,6 +82,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.ui.buttonLoading.create(button);
+    this.renderer.setAttribute(this.rbutton.nativeElement, 'disabled', '');
 
     // send user data to Laravel API and returns a partial observer of the user
     this.auth.loginUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
