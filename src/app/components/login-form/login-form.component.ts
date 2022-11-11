@@ -5,12 +5,17 @@ import { take } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { gsap } from 'gsap';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  providers: [UIFeedbackService]
+  providers: [UIFeedbackService],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ]
 })
 export class LoginFormComponent implements OnInit {
 

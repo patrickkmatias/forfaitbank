@@ -5,12 +5,17 @@ import { take } from 'rxjs';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { gsap } from 'gsap';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
-  providers: [UIFeedbackService]
+  providers: [UIFeedbackService],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ]
 })
 export class RegisterFormComponent implements OnInit {
 
