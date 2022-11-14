@@ -20,7 +20,7 @@ export class UIFeedbackService {
     create: (button: HTMLElement): HTMLElement => {
 
       button.setAttribute('disabled','');
-      button.style.color = 'transparent';
+      button.classList.add('!text-transparent');
       button.innerHTML += this.buttonLoading.threeDotsLoading;
       return button;
 
@@ -28,7 +28,7 @@ export class UIFeedbackService {
     dismiss: (button: HTMLElement): HTMLElement => {
 
       button.removeAttribute('disabled');
-      button.style.color = 'initial';
+      button.classList.remove('!text-transparent');
       document.querySelector('.loader')!.remove();
       return button;
 

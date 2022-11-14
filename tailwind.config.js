@@ -6,6 +6,7 @@ module.exports = {
     "./src/app/app.component.css",
     "./src/app/pages/**/**.{html,css}",
     "./src/app/components/**/**.{html,css,ts}",
+    "./src/app/services/uifeedback.service.ts"
   ],
   theme: {
     extend: {},

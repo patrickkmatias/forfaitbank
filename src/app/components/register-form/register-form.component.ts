@@ -1,19 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
 import { take } from 'rxjs';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { gsap } from 'gsap';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
-  providers: [UIFeedbackService]
+  providers: [UIFeedbackService],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ]
 })
 export class RegisterFormComponent implements OnInit {
 
+  @ViewChild('backButton') bbutton!: ElementRef;
   @Input() isEditMode = false;
   @Output() closeFormEvent = new EventEmitter<boolean>();
 
@@ -23,13 +29,14 @@ export class RegisterFormComponent implements OnInit {
   constructor(
     public ui: UIFeedbackService,
     private auth: AuthenticationService,
+    private renderer: Renderer2,
     ) { }
 
   ngOnInit(): void {
 
     gsap.from('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
     })
 
     this.initRegisterForm();
@@ -57,7 +64,7 @@ export class RegisterFormComponent implements OnInit {
 
     gsap.to('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       onComplete: () => this.closeFormEvent.emit(true)
     })
 
@@ -71,6 +78,7 @@ export class RegisterFormComponent implements OnInit {
     let subscribeResponse = {
       complete: () => {
 
+        this.renderer.removeAttribute(this.bbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'success';
         this.ui.timer(5, this.closeForm.bind(this))
@@ -78,6 +86,7 @@ export class RegisterFormComponent implements OnInit {
       },
       error: (err: unknown) => {
 
+        this.renderer.removeAttribute(this.bbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
@@ -88,6 +97,7 @@ export class RegisterFormComponent implements OnInit {
     }
 
     this.ui.buttonLoading.create(button);
+    this.renderer.setAttribute(this.bbutton.nativeElement, 'disabled', '');
 
     // send user data to Laravel API and returns a partial observer of the user
     this.auth.registerUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);

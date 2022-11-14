@@ -18,14 +18,14 @@ export class PainelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     /** Checks if the user is logged in; */
     if (!this.auth.isLoggedIn()) this.logout();
   }
 
   logout(): void {
     this.auth.logout();
-    this.router.navigate(['login']).then(() => {location.reload()});
+    this.router.navigate(['login']);
   }
 
 }

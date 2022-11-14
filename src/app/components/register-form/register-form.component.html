@@ -72,6 +72,7 @@
         name="cpf"
         id="cpf"
         formControlName="cpf"
+        autocomplete="off"
         class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         [inputMask]="cpfMask"
         placeholder="485.345.993-08"
@@ -114,39 +115,41 @@
     </div>
   </div>
   <button
-    *ngIf="ui.feedback == undefined"
     id="submitButton"
     type="submit"
     (click)="submitForm()"
-    [disabled]="this.form.invalid"
-    class="w-full relative top-0 left-0 flex justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:text-gray-300 disabled:hover:bg-emerald-800"
+    [disabled]="this.form.invalid || ui.feedback != undefined"
+    class="w-full relative top-0 left-0 flex justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
   >
     {{ isEditMode ? "Editar conta" : "Fazer cadastro" }}
+  </button>
+  <button
+    #backButton
+    (click)="closeForm()"
+    class="relative flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
+  >
+    Voltar
   </button>
   <!-- START - Form submit result feedback -->
   <div
     *ngIf="ui.feedback == 'success'"
+    [@fadeInOnEnter] [@fadeOutOnLeave]
     class="w-full h-fit p-4 mt-6 rounded-md text-emerald-100 text-center font-bold bg-emerald-900"
   >
-    <p>Usuário {{ isEditMode ? "editado" : "cadastrado" }} com sucesso! ;)</p>
+    <p>Usuário {{ isEditMode ? "editado" : "cadastrado" }} com sucesso! =)</p>
     <p class="mt-2 text-xs font-light">
       Voltando para a página anterior em {{ ui.seconds }} seg.
     </p>
   </div>
   <div
     *ngIf="ui.feedback == 'error'"
+    [@fadeInOnEnter] [@fadeOutOnLeave]
     class="w-full h-fit p-4 mt-6 rounded-md text-gray-200 text-center font-bold bg-red-700"
   >
-    <p>
-      Erro ao {{ isEditMode ? "editar" : "cadastrar" }} usuário. Verifique os
-      campos e tente novamente ({{ ui.seconds }}).
+    <p>Ops! Tivemos um problema ao {{ isEditMode ? "editar" : "cadastrar" }} o usuário =(</p>
+    <p class="mt-2 text-xs font-light">
+      Verifique os campos e tente novamente ({{ ui.seconds }}).
     </p>
   </div>
   <!-- END - Form submit result feedback -->
-  <button
-    (click)="closeForm()"
-    class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
-  >
-    Voltar
-  </button>
 </form>

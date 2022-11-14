@@ -1,19 +1,25 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { gsap } from 'gsap';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  providers: [UIFeedbackService]
+  providers: [UIFeedbackService],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ]
 })
 export class LoginFormComponent implements OnInit {
 
+  @ViewChild('registerButton') rbutton!: ElementRef;
   @Output() closeFormEvent = new EventEmitter();
 
   form!: FormGroup;
@@ -21,14 +27,15 @@ export class LoginFormComponent implements OnInit {
   constructor(
     public ui: UIFeedbackService,
     private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
 
     gsap.from('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
     })
 
     this.initLoginForm();
@@ -59,6 +66,7 @@ export class LoginFormComponent implements OnInit {
 
         this.auth.login();
 
+        this.renderer.removeAttribute(this.rbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'success';
         this.ui.timer(3, () => this.router.navigate(['painel']));
@@ -68,6 +76,7 @@ export class LoginFormComponent implements OnInit {
 
         this.auth.logout();
 
+        this.renderer.removeAttribute(this.rbutton.nativeElement, 'disabled');
         this.ui.buttonLoading.dismiss(button);
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
@@ -78,6 +87,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.ui.buttonLoading.create(button);
+    this.renderer.setAttribute(this.rbutton.nativeElement, 'disabled', '');
 
     // send user data to Laravel API and returns a partial observer of the user
     this.auth.loginUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
@@ -87,7 +97,7 @@ export class LoginFormComponent implements OnInit {
   closeForm() {
     gsap.to('form', {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       onComplete: () => this.closeFormEvent.emit(true)
     })
   }
