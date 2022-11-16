@@ -15,6 +15,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { OperationComponent } from './components/operation/operation.component';
 import { OperationsTableComponent } from './components/operations-table/operations-table.component';
 import { OperationFormComponent } from './components/operation-form/operation-form.component';
+import { PackageComponent } from './components/package/package.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OperationFormComponent } from './components/operation-form/operation-fo
     UserDetailComponent,
     OperationComponent,
     OperationsTableComponent,
-    OperationFormComponent
+    OperationFormComponent,
+    PackageComponent
   ],
   imports: [
     BrowserModule,
