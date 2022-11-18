@@ -6,6 +6,7 @@ import { validateBillsValidator } from './validate-bills.validator';
 @Component({
   selector: 'app-operation-form',
   templateUrl: './operation-form.component.html',
+  styles: ['div#packagesContainer::-webkit-scrollbar{display: none}'],
 })
 export class OperationFormComponent implements OnInit {
   /**
@@ -33,9 +34,11 @@ export class OperationFormComponent implements OnInit {
     bills: this.bills,
   });
 
-  pkg = new Package(10, 30);
-  pkg2 = new Package(50, 10);
-  pkg3 = new Package(100, 48);
+  packages: Package[] = [
+    new Package(10, 30),
+    new Package(50, 10),
+    new Package(100, 48),
+  ];
 
   constructor(private r: Renderer2) {}
 

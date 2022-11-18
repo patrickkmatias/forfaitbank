@@ -66,10 +66,19 @@
       </button>
     </div>
   </div>
-  <!-- <div #packagesContainer class="flex flex-wrap">
-    <app-package [package]="pkg"></app-package>
-  </div> -->
-  <div class="w-full h-full flex flex-col justify-end">
+  <div
+    id="packagesContainer"
+    class="w-full h-32 flex my-4 overflow-x-scroll"
+  >
+  <p>Quantidade de pacotes utilizados: 11</p>
+
+    <!-- <app-package
+      *ngFor="let pkg of packages"
+      [package]="pkg"
+      class="w-fit h-fit first:ml-0 mx-1"
+    ></app-package> -->
+  </div>
+  <div class="w-full h-fit flex flex-col justify-end">
     <button
       type="submit"
       [disabled]="this.form.invalid"
