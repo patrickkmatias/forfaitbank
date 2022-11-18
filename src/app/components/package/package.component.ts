@@ -27,12 +27,12 @@ import { ColorGeneratorService } from 'src/app/services/color-generator.service'
         <li class="flex justify-between">
           <span>💵</span
           ><span class="flex items-center text-slate-900 text-sm">{{
-            pkg.noteType | currency: 'BRL'
+            pkg.billType | currency: 'BRL'
           }}</span>
         </li>
         <li class="flex justify-between">
           <span>🔢</span
-          ><span class="flex items-center text-slate-900 text-sm">{{ pkg.noteQuantity }}</span>
+          ><span class="flex items-center text-slate-900 text-sm">{{ pkg.billQuantity }}</span>
         </li>
         <li class="flex justify-between">
           <span class="pl-[0.1rem]">💰</span
