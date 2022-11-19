@@ -4,20 +4,20 @@ import { Operation } from './operation.model';
 export class Package {
   billType: number;
   billQuantity: number;
+  status: string;
+  parentsOperations: Operation[];
   totalValue: number;
   color: string;
-  isClosed: boolean;
-  parentsOperations: Operation[];
 
-  constructor(billType: number, billQuantity: number, po: Operation[]) {
-
-    let MAX_BILL_QUANTITY = 50;
+  constructor(billType: number, billQuantity: number, parentsOperations: Operation[]) {
 
     if (billType == 10 || 50 || 100) {
       this.billType = billType;
     } else {
       throw new Error('Invalid bill; valid bills are: 10, 50 and 100.');
     }
+
+    const MAX_BILL_QUANTITY = 50;
 
     if (billQuantity <= MAX_BILL_QUANTITY) {
       this.billQuantity = billQuantity;
@@ -28,7 +28,7 @@ export class Package {
     let cg = new ColorGeneratorService();
     this.totalValue = billType * billQuantity;
     this.color = cg.generateRandomHexColor();
-    this.isClosed = billQuantity == 50 ? true : false;
-    this.parentsOperations = po;
+    this.status = billQuantity == 50 ? 'closed' : 'opened';
+    this.parentsOperations = parentsOperations;
   }
 }
