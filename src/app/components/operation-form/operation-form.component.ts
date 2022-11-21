@@ -2,6 +2,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Package } from 'src/app/models/package.model';
 import { validateBillsValidator } from './validate-bills.validator';
+import { Operation } from 'src/app/models/operation.model';
+import { User } from 'src/app/models/user.model'
 
 @Component({
   selector: 'app-operation-form',
@@ -34,13 +36,8 @@ export class OperationFormComponent implements OnInit {
     bills: this.bills,
   });
 
-  packages: Package[] = [
-    new Package(10, 30),
-    new Package(50, 10),
-    new Package(100, 48),
-  ];
 
-  constructor(private r: Renderer2) {}
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {}
 
@@ -54,14 +51,25 @@ export class OperationFormComponent implements OnInit {
    */
   toggleBill(bill: string): void {
     let value: boolean = this.bills.get(`bill${bill}`)!.value;
+
+    for (let ctrl in this.bills.controls) {
+      if (ctrl != `bill${bill}`) {
+        this.bills.controls[ctrl].setValue(false);
+        this.renderer.removeClass(
+          document.querySelector(`#${ctrl}`),
+          '!bg-emerald-600'
+        );
+      }
+    }
+
     this.bills.controls[`bill${bill}`].setValue(!value);
 
-    !value == true
-      ? this.r.addClass(
+    !value
+      ? this.renderer.addClass(
           document.querySelector(`#bill${bill}`),
           '!bg-emerald-600'
         )
-      : this.r.removeClass(
+      : this.renderer.removeClass(
           document.querySelector(`#bill${bill}`),
           '!bg-emerald-600'
         );
