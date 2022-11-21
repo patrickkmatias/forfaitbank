@@ -5,11 +5,11 @@ export class Package {
   billType: number;
   billQuantity: number;
   status: string;
-  parentsOperations: Operation[];
+  parentOperation: Operation;
   totalValue: number;
   color: string;
 
-  constructor(billType: number, billQuantity: number, parentsOperations: Operation[]) {
+  constructor(billType: number, billQuantity: number, parentOperation: Operation) {
 
     if (billType == 10 || 50 || 100) {
       this.billType = billType;
@@ -29,6 +29,6 @@ export class Package {
     this.totalValue = billType * billQuantity;
     this.color = cg.generateRandomHexColor();
     this.status = billQuantity == 50 ? 'closed' : 'opened';
-    this.parentsOperations = parentsOperations;
+    this.parentOperation = parentOperation;
   }
 }
