@@ -42,23 +42,26 @@
     <label class="ml-1 mt-4 sm:mt-2 block text-base font-medium"
       >De qual nota você irá precisar?</label
     >
-    <div formGroupName="bills" class="w-full h-auto mt-2 flex justify-start">
+    <div class="w-full h-auto mt-2 flex justify-start">
       <button
-        id="bill10"
+        #bill10
+        id='bill10'
         (click)="toggleBill('10')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer transition-colors duration-500"
       >
         R$ 10
       </button>
       <button
-        id="bill50"
+        #bill50
+        id='bill50'
         (click)="toggleBill('50')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer transition-colors duration-500"
       >
         R$ 50
       </button>
       <button
-        id="bill100"
+        #bill100
+        id='bill100'
         (click)="toggleBill('100')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer transition-colors duration-500"
       >
