@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-operations-table',
   templateUrl: './operations-table.component.html',
-  styleUrls: ['./operations-table.component.css']
+  styles: ['ul::-webkit-scrollbar{display: none;}'],
 })
 export class OperationsTableComponent implements OnInit {
 
