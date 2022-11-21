@@ -7,9 +7,6 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
-import { Operation } from 'src/app/models/operation.model';
-import { User } from 'src/app/models/user.model';
-
 @Component({
   selector: 'app-operation-form',
   templateUrl: './operation-form.component.html',
@@ -48,15 +45,6 @@ export class OperationFormComponent implements OnInit {
     });
 
     this.form.get('billType')?.setValue(Number(billType));
-  }
-
-  generatePackages() {
-    this.form.get('value')?.valueChanges.subscribe((value) => {
-      console.log('value has changed', value);
-
-      if (value >= 1000) {
-      }
-    });
   }
 
   submitForm() {
