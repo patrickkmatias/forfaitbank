@@ -17,10 +17,10 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   logout(): void {
     this.auth.logout();
-    this.router.navigate(['login']).then(() => {location.reload()});
+    this.router.navigate(['login'])
   }
 
 }
