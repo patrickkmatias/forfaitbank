@@ -3,9 +3,9 @@
   class="w-full h-auto relative p-4 flex justify-between bg-emerald-800"
 >
   <div>
-    <h2 class="mb-2 text-xl font-medium text-emerald-100">Operação {{ opId }}</h2>
-    <p>Valor: {{ 200 | currency: "BRL" }}</p>
-    <p>Notas requisitadas: 10, 50</p>
+    <h2 class="mb-2 text-xl font-medium text-emerald-100">{{ operation.name }}</h2>
+    <p>Valor: {{ operation.value | currency: "BRL" }}</p>
+    <p>Nota requisitada: {{ operation.billType }}</p>
   </div>
   <button
     id="operationDetailButton"
@@ -37,9 +37,9 @@
   class="w-full h-full sticky top-0 left-0 z-40 p-4 flex justify-between bg-emerald-800"
 >
   <div>
-    <h2 class="mb-2 text-xl font-medium text-emerald-100">Operação {{ opId }}</h2>
-    <p>Valor: {{ 200 | currency: "BRL" }}</p>
-    <p>Notas requisitadas: 10, 50</p>
+    <h2 class="mb-2 text-xl font-medium text-emerald-100">{{ operation.name }}</h2>
+    <p>Valor: {{ operation.value | currency: "BRL" }}</p>
+    <p>Nota requisitada: {{ operation.billType }}</p>
   </div>
   <button
     id="operationDetailButton"

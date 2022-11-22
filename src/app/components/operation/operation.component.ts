@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Operation } from 'src/app/models/operation.model';
 
 @Component({
   selector: 'app-operation',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class OperationComponent implements OnInit {
 
-  @Input() opId:number = 0;
+  @Input() operation!: Operation;
 
   @Output() showDetailEvent = new EventEmitter<boolean>();
 
@@ -16,10 +17,10 @@ export class OperationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  
+
   }
 
-  showDetail() { 
+  showDetail() {
     this.showDetailEvent.emit(true);
     this._showDetail = true;
   }

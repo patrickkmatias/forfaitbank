@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { mockupOperations } from 'src/app/models/operation.model';
 
 @Component({
   selector: 'app-operations-table',
@@ -9,13 +10,7 @@ export class OperationsTableComponent implements OnInit {
 
   showAddForm = false;
 
-  operations = [
-    {id: 1},
-    {id: 2},
-    {id: 3},
-    {id: 4},
-    {id: 5},
-  ]
+  operations = mockupOperations;
 
   constructor() { }
 
