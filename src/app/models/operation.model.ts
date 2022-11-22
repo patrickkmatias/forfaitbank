@@ -2,6 +2,7 @@ import { Package } from './package.model';
 import { User, mockupUser } from './user.model';
 
 export class Operation {
+  id?: number;
   name: string;
   ownerUser: User;
   value: number;
@@ -20,8 +21,10 @@ export class Operation {
     ownerUser: User;
     value: number;
     billType: number;
+    id?: number;
     parentOperation?: Operation;
   }) {
+    this.id = operationProps.id
     this.name = operationProps.name;
     this.ownerUser = operationProps.ownerUser;
     this.status = 'opened';
@@ -132,30 +135,35 @@ export class Operation {
 
 const mockupOperations: Operation[] = [
   new Operation({
+    id: 1,
     name: "Operação 1",
     ownerUser: mockupUser,
     value: 5000,
     billType: 50,
   }),
   new Operation({
+    id: 2,
     name: "Operação 2",
     ownerUser: mockupUser,
     value: 10000,
     billType: 100,
   }),
   new Operation({
+    id: 3,
     name: "Operação Bill Ten",
     ownerUser: mockupUser,
     value: 27354,
     billType: 10,
   }),
   new Operation({
+    id: 4,
     name: "Operação Lavagem",
     ownerUser: mockupUser,
     value: 603543,
     billType: 100,
   }),
   new Operation({
+    id: 5,
     name: "Operação Odebrecht",
     ownerUser: mockupUser,
     value: 100320,
