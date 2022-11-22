@@ -1,5 +1,5 @@
-<section class="w-full h-auto mb-8 flex flex-col items-center">
-  <div class="w-full px-8 sm:px-16 pb-2 self-start flex justify-between">
+<section class="flex flex-col items-center mb-8 w-full h-auto sm:h-full">
+  <div class="flex justify-between self-start px-8 pb-2 w-full sm:px-16">
     <h1 class="text-2xl font-semibold tracking-wide text-emerald-100">
       Suas operações
     </h1>
@@ -7,7 +7,7 @@
       id="addOperationButton"
       title="Criar nova operação"
       (click)="toggleAddOperationView()"
-      class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500"
+      class="flex justify-center items-center self-end w-8 h-8 bg-emerald-700 rounded-lg transition-all duration-500 origin-center cursor-pointer hover:scale-125"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -25,10 +25,12 @@
       </svg>
     </button>
   </div>
-  <div class="w-11/12 h-auto relative flex items-center justify-center rounded-xl overflow-hidden bg-emerald-900">
+  <div
+    class="flex overflow-hidden relative justify-center items-center w-11/12 h-auto bg-emerald-900 rounded-xl sm:h-full"
+  >
     <ul
       id="operationsTable"
-      class="w-full h-[60vh] relative top-0 left-0 overflow-x-hidden overflow-y-auto"
+      class="w-full h-[60vh] sm:h-full relative top-0 left-0 overflow-x-hidden overflow-y-auto"
     >
       <app-operation
         *ngFor="let op of operations"
@@ -37,7 +39,10 @@
         (showDetailEvent)="toggleDetail($event, op.id!)"
       ></app-operation>
     </ul>
-    <app-operation-form *ngIf="showAddForm" class="w-full h-[60vh] relative z-40"></app-operation-form>
+    <app-operation-form
+      *ngIf="showAddForm"
+      class="w-full h-[60vh] relative z-40"
+    ></app-operation-form>
     <div
       id="endDarkGradient"
       class="w-full h-[10%] absolute z-10 bottom-0 bg-gradient-to-t from-black to-transparent opacity-20"

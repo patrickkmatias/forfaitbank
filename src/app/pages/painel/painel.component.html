@@ -1,15 +1,15 @@
 <section
-  class="w-full h-auto flex flex-col justify-between items-center text-gray-200"
+  class="grid grid-cols-1 gap-0 justify-between items-center w-full h-auto text-gray-200 grid-layout grid-rows-auto-3 sm:h-full"
 >
   <h1
-    class="relative my-16 mx-4 text-center text-2xl font-bold tracking-wide text-emerald-50"
+    class="relative mx-auto my-16 text-2xl font-bold tracking-wide text-center text-emerald-50 w-fit h-fit grid-position"
   >
     Olá, <span class="font-extrabold text-emerald-100">Patrick!</span>
     <button
       id="logoutButton"
       (click)="logout()"
       title="Fazer logoff"
-      class="w-8 h-8 p-1 flex absolute left-[103%] -top-[1px] justify-center items-center self-end rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 last:z-20"
+      class="flex absolute bottom-0 left-full justify-center items-center self-end p-1 w-8 h-8 rounded-lg transition-all duration-500 origin-center cursor-pointer hover:scale-125 last:z-20"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +27,10 @@
       </svg>
     </button>
   </h1>
-  <app-operations-table class="w-full h-auto"></app-operations-table>
-  <app-user-detail class="w-full h-uto self-start"></app-user-detail>
+  <app-operations-table
+    class="py-8 w-full h-auto sm:h-full grid-position"
+  ></app-operations-table>
+  <app-user-detail
+    class="overflow-y-auto overflow-x-hidden self-start w-full sm:h-full grid-position"
+  ></app-user-detail>
 </section>

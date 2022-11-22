@@ -1,10 +1,10 @@
 <article
+  [@fadeInOnEnter] [@fadeOutOnLeave]
   *ngIf="edit == false"
-  class="w-full h-auto flex flex-col items-center justify-between"
-  style="grid-area: profile"
+  class="flex flex-col justify-between items-center w-full h-auto"
 >
   <ul class="self-start ml-6">
-    <h2 class="mb-4 font-bold">Dados da sua conta:</h2>
+    <!-- <h2 class="mb-4 font-bold">Dados da sua conta:</h2> -->
     <li class="mb-4">
       <p class="font-semibold">Nome completo:</p>
       Patrick Matias da Silva
@@ -26,38 +26,43 @@
       22/11/2003
     </li>
   </ul>
-  <div class="w-full h-auto p-4 !pb-10 flex justify-around sm:!justify-start items-center self-start">
+  <div
+    class="w-full h-auto flex-wrap pt-4 pl-4 !pb-10 flex justify-around sm:!justify-start items-center self-start"
+  >
+    <div class="flex w-full h-auto sm:!mx-2">
+      <button
+        (click)="edit = true"
+        class="flex relative justify-center py-2 w-full text-sm font-medium text-gray-600 bg-emerald-200 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+      >
+        Editar dados
+      </button>
+      <button
+        id="logoutButton"
+        (click)="logout()"
+        title="Fazer logoff"
+        class="flex relative justify-center items-center place-self-center ml-2 w-8 h-8 bg-emerald-700 rounded-lg transition-all duration-500 origin-center cursor-pointer shrink-0 hover:scale-125 last:z-50"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+
+            stroke-linejoin="round"
+            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+          />
+        </svg>
+      </button>
+    </div>
     <button
-      (click)="edit = true"
-      class="relative flex w-fit justify-center py-2 px-4 sm:!mx-4 rounded-md border border-transparent bg-emerald-200 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors"
-    >
-      Editar dados
-    </button>
-    <button
-      class="relative flex w-fit justify-center py-2 px-4 sm:!mx-4 rounded-md border border-transparent bg-red-600 text-sm font-medium text-gray-300 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-500"
+      class="relative flex w-full justify-center py-2 px-4 mt-2 sm:!mx-2 rounded-md border-[3px] border-emerald-700 text-sm font-medium text-gray-300 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-500"
     >
       Deletar conta
-    </button>
-    <button
-      id="logoutButton"
-      (click)="logout()"
-      title="Fazer logoff"
-      class="w-8 h-8 flex justify-center items-center place-self-center sm:!mx-4 bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative last:z-50"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-5 h-5"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-        />
-      </svg>
     </button>
   </div>
 </article>
