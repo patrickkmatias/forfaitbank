@@ -1,5 +1,5 @@
 import { Package } from './package.model';
-import { User } from './user.model';
+import { User, mockupUser } from './user.model';
 
 export class Operation {
   name: string;
@@ -129,3 +129,38 @@ export class Operation {
     return packages;
   }
 }
+
+const mockupOperations: Operation[] = [
+  new Operation({
+    name: "Operação 1",
+    ownerUser: mockupUser,
+    value: 5000,
+    billType: 50,
+  }),
+  new Operation({
+    name: "Operação 2",
+    ownerUser: mockupUser,
+    value: 10000,
+    billType: 100,
+  }),
+  new Operation({
+    name: "Operação Bill Ten",
+    ownerUser: mockupUser,
+    value: 27354,
+    billType: 10,
+  }),
+  new Operation({
+    name: "Operação Lavagem",
+    ownerUser: mockupUser,
+    value: 603543,
+    billType: 100,
+  }),
+  new Operation({
+    name: "Operação Odebrecht",
+    ownerUser: mockupUser,
+    value: 100320,
+    billType: 50,
+  }),
+]
+
+export { mockupOperations }
