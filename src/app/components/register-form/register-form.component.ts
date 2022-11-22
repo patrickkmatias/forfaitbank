@@ -10,7 +10,6 @@ import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animati
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css'],
   providers: [UIFeedbackService],
   animations: [
     fadeInOnEnterAnimation(),
