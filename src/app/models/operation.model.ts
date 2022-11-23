@@ -169,6 +169,27 @@ const mockupOperations: Operation[] = [
     value: 100320,
     billType: 50,
   }),
+  new Operation({
+    id: 6,
+    name: "Operação BNDES",
+    ownerUser: mockupUser,
+    value: 3203043,
+    billType: 100,
+  }),
+    new Operation({
+    id: 7,
+    name: "Suíça is coming",
+    ownerUser: mockupUser,
+    value: 50000,
+    billType: 100,
+  }),
+  new Operation({
+    id: 8,
+    name: "Metaverse",
+    ownerUser: mockupUser,
+    value: 320,
+    billType: 10,
+  }),
 ]
 
 export { mockupOperations }
