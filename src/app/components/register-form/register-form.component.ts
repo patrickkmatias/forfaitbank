@@ -33,7 +33,7 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    gsap.from('form', {
+    gsap.from('#registerForm', {
       opacity: 0,
       duration: 0.5,
     })
@@ -61,7 +61,7 @@ export class RegisterFormComponent implements OnInit {
 
   closeForm(): void {
 
-    gsap.to('form', {
+    gsap.to('#registerForm', {
       opacity: 0,
       duration: 0.5,
       onComplete: () => this.closeFormEvent.emit(true)

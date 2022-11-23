@@ -1,19 +1,19 @@
-<form class="px-16" [formGroup]="form">
+<form class="px-16" [formGroup]="form" id="registerForm">
   <h2
     *ngIf="isEditMode; else elseBlock"
-    class="mt-6 text-center text-3xl font-bold tracking-tight text-emerald-100"
+    class="mt-6 text-3xl font-bold tracking-tight text-center text-emerald-100"
   >
     Editar conta
   </h2>
   <ng-template #elseBlock>
     <h2
-      class="mt-12 text-center text-3xl font-bold tracking-tight text-emerald-100"
+      class="mt-12 text-3xl font-bold tracking-tight text-center text-emerald-100"
     >
       Cadastrar conta
     </h2>
   </ng-template>
   <div>
-    <label for="name" class="mt-8 sm:mt-4 block text-sm font-medium text-white"
+    <label for="name" class="block mt-8 text-sm font-medium text-white sm:mt-4"
       >Nome</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -24,13 +24,13 @@
         type="text"
         required
         autocomplete="name"
-        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="block px-3 w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="Seu nome completo"
       />
     </div>
   </div>
   <div>
-    <label for="email" class="mt-4 block text-sm font-medium text-white"
+    <label for="email" class="block mt-4 text-sm font-medium text-white"
       >Email</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -41,13 +41,13 @@
         type="email"
         autocomplete="email"
         required
-        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="block px-3 w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="patrick@forfait.org"
       />
     </div>
   </div>
   <div>
-    <label for="address" class="mt-4 block text-sm font-medium text-white"
+    <label for="address" class="block mt-4 text-sm font-medium text-white"
       >Endereço</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -57,13 +57,13 @@
         formControlName="address"
         id="address"
         autocomplete="address-line1"
-        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="px-3 w-full rounded-md border-gray-300 lock focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="Rua Cinco de Julho, Guarulhos"
       />
     </div>
   </div>
   <div>
-    <label for="cpf" class="mt-4 block text-sm font-medium text-white"
+    <label for="cpf" class="block mt-4 text-sm font-medium text-white"
       >CPF</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -73,14 +73,14 @@
         id="cpf"
         formControlName="cpf"
         autocomplete="off"
-        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="px-3 w-full rounded-md border-gray-300 lock focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         [inputMask]="cpfMask"
         placeholder="485.345.993-08"
       />
     </div>
   </div>
   <div>
-    <label for="birthdate" class="mt-4 block text-sm font-medium text-white"
+    <label for="birthdate" class="block mt-4 text-sm font-medium text-white"
       >Data de nascimento</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -91,14 +91,14 @@
         id="birthdate"
         formControlName="birthdate"
         autocomplete="bday"
-        class="lock w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="px-3 w-full rounded-md border-gray-300 lock focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="22/11/2003"
         max="2003-12-31"
       />
     </div>
   </div>
   <div>
-    <label for="password" class="mt-4 block text-sm font-medium text-white"
+    <label for="password" class="block mt-4 text-sm font-medium text-white"
       >Senha</label
     >
     <div class="relative mt-1 rounded-md shadow-sm">
@@ -109,7 +109,7 @@
         formControlName="password"
         autocomplete="new-password"
         required
-        class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+        class="block px-3 w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="••••••••"
       />
     </div>
@@ -119,14 +119,14 @@
     type="submit"
     (click)="submitForm()"
     [disabled]="this.form.invalid || ui.feedback != undefined"
-    class="w-full relative top-0 left-0 flex justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
+    class="flex relative top-0 left-0 justify-center px-4 py-2 mt-6 w-full text-sm font-medium text-white bg-emerald-800 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     {{ isEditMode ? "Editar conta" : "Fazer cadastro" }}
   </button>
   <button
     #backButton
     (click)="closeForm()"
-    class="relative flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
+    class="flex relative justify-center px-4 py-2 mt-6 mb-10 w-full text-sm font-medium text-gray-600 bg-emerald-200 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     Voltar
   </button>
@@ -134,7 +134,7 @@
   <div
     *ngIf="ui.feedback == 'success'"
     [@fadeInOnEnter] [@fadeOutOnLeave]
-    class="w-full h-fit p-4 mt-6 rounded-md text-emerald-100 text-center font-bold bg-emerald-900"
+    class="p-4 mt-6 w-full font-bold text-center text-emerald-100 bg-emerald-900 rounded-md h-fit"
   >
     <p>Usuário {{ isEditMode ? "editado" : "cadastrado" }} com sucesso! =)</p>
     <p class="mt-2 text-xs font-light">
@@ -144,7 +144,7 @@
   <div
     *ngIf="ui.feedback == 'error'"
     [@fadeInOnEnter] [@fadeOutOnLeave]
-    class="w-full h-fit p-4 mt-6 rounded-md text-gray-200 text-center font-bold bg-red-700"
+    class="p-4 mt-6 w-full font-bold text-center text-gray-200 bg-red-700 rounded-md h-fit"
   >
     <p>Ops! Tivemos um problema ao {{ isEditMode ? "editar" : "cadastrar" }} o usuário =(</p>
     <p class="mt-2 text-xs font-light">

@@ -1,6 +1,6 @@
-<form class="w-full h-auto mt-8 px-16 space-y-6" [formGroup]="form">
+<form id="loginForm" class="px-16 mt-8 space-y-6 w-full h-auto" [formGroup]="form">
   <h2
-    class="mt-6 text-center text-3xl font-bold tracking-tight text-emerald-100"
+    class="mt-6 text-3xl font-bold tracking-tight text-center text-emerald-100"
   >
     Acesse sua conta
   </h2>
@@ -16,14 +16,14 @@
           type="email"
           autocomplete="email"
           required
-          class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+          class="block px-3 w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
           placeholder="patrick@forfait.org"
           formControlName="email"
         />
       </div>
     </div>
     <div>
-      <label for="password" class="mt-4 block text-sm font-medium text-white"
+      <label for="password" class="block mt-4 text-sm font-medium text-white"
         >Senha</label
       >
       <div class="relative mt-1 rounded-md shadow-sm">
@@ -33,7 +33,7 @@
           type="password"
           autocomplete="current-password"
           required
-          class="block w-full rounded-md border-gray-300 px-3 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+          class="block px-3 w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
           placeholder="••••••••"
           formControlName="password"
         />
@@ -46,7 +46,7 @@
     type="submit"
     (click)="submitForm()"
     [disabled]="this.form.invalid || ui.feedback != undefined"
-    class="w-full relative top-0 left-0 flex justify-center rounded-md border border-transparent bg-emerald-800 py-2 px-4 mt-6 text-sm font-medium text-white hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
+    class="flex relative top-0 left-0 justify-center px-4 py-2 mt-6 w-full text-sm font-medium text-white bg-emerald-800 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     Fazer login
   </button>
@@ -56,7 +56,7 @@
     id="showRegisterFormButton"
     (click)="closeForm()"
     [disabled]="ui.feedback != undefined"
-    class="relative w-full rounded-md border border-transparent bg-emerald-200 py-2 px-4 mt-6 mb-10 text-sm font-medium text-gray-600 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50"
+    class="relative px-4 py-2 mt-6 mb-10 w-full text-sm font-medium text-gray-600 bg-emerald-200 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     Não tem conta? <br />
     Faça seu cadastro!
@@ -66,7 +66,7 @@
   <div
     *ngIf="ui.feedback == 'success'"
     [@fadeInOnEnter] [@fadeOutOnLeave]
-    class="w-full h-fit p-4 mt-6 rounded-md text-emerald-100 text-center font-bold bg-emerald-900"
+    class="p-4 mt-6 w-full font-bold text-center text-emerald-100 bg-emerald-900 rounded-md h-fit"
   >
     <p>Login bem-sucedido! =)</p>
     <p class="mt-2 text-xs font-light">
@@ -76,7 +76,7 @@
   <div
     *ngIf="ui.feedback == 'error'"
     [@fadeInOnEnter] [@fadeOutOnLeave]
-    class="w-full h-fit p-4 mt-6 rounded-md text-gray-200 text-center font-bold bg-red-700"
+    class="p-4 mt-6 w-full font-bold text-center text-gray-200 bg-red-700 rounded-md h-fit"
   >
     <p>Ops! Tivemos um problema ao tentar fazer login =(</p>
     <p class="mt-2 text-xs font-light">

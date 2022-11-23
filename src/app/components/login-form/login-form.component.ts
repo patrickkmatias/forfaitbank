@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    gsap.from('form', {
+    gsap.from('#loginForm', {
       opacity: 0,
       duration: 0.5,
     })
@@ -94,7 +94,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   closeForm() {
-    gsap.to('form', {
+    gsap.to('#loginForm', {
       opacity: 0,
       duration: 0.5,
       onComplete: () => this.closeFormEvent.emit(true)
