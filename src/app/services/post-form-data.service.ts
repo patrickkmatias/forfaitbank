@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -8,7 +9,7 @@ import { Injectable } from "@angular/core";
 export class PostFormDataService {
    constructor(private http: HttpClient) {}
 
-	private _apiUrl = "https://forfaitbank-api.vercel.app";
+	private _apiUrl = environment.apiUrl;
 
    // create a helper function that accepts the data to be posted and the URL
    public postFormData(url: string, data: any): Observable<any> {
