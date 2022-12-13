@@ -13,7 +13,7 @@ export class AuthenticationService {
       return this.http.postFormData("/auth/signup", user);
    }
 
-   loginUser(user: User): Observable<User> {
+   signin(user: User): Observable<{ access_token: string }> {
       return this.http.postFormData("/auth/signin", user);
    }
 
