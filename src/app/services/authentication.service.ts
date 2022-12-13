@@ -1,35 +1,31 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { PostFormDataService } from "./post-form-data.service";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { User } from "../models/user.model";
 
 @Injectable({
-  providedIn: 'root'
+   providedIn: "root",
 })
 export class AuthenticationService {
+   constructor(private http: PostFormDataService) {}
 
-  constructor(private http: HttpClient) { }
+   signup(user: User): Observable<{ access_token: string }> {
+      return this.http.postFormData("/auth/signup", user);
+   }
 
-  private _apiUrl = "https://forfaitbank-api.herokuapp.com/public/api";
+   loginUser(user: User): Observable<User> {
+      return this.http.postFormData("/auth/signin", user);
+   }
 
-  registerUser(user: User): Observable<User> { 
-    return this.http.post<User>(`${this._apiUrl}/register`, user);
-  }
+   isLoggedIn(): boolean {
+      return localStorage.getItem("isLoggedIn") == "true" ? true : false;
+   }
 
-  loginUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this._apiUrl}/login`, user);
-  }
+   login() {
+      return localStorage.setItem("isLoggedIn", "true");
+   }
 
-  isLoggedIn(): boolean {
-    return (localStorage.getItem('isLoggedIn') == 'true') ? true : false;
-  }
-
-  login() {
-    return localStorage.setItem('isLoggedIn', 'true');
-  }
-
-  logout() {
-    return localStorage.setItem('isLoggedIn', 'false');
-  }
-
+   logout() {
+      return localStorage.setItem("isLoggedIn", "false");
+   }
 }

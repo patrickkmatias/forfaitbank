@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
-import { take } from 'rxjs';
 import { UIFeedbackService } from 'src/app/services/uifeedback.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { gsap } from 'gsap';
@@ -90,7 +89,7 @@ export class RegisterFormComponent implements OnInit {
         this.ui.feedback = 'error';
         this.ui.timer(5, () => this.ui.feedback = undefined)
 
-        console.log('ew, error', err);
+        console.error('ew, error', err);
 
       }
     }
@@ -98,8 +97,7 @@ export class RegisterFormComponent implements OnInit {
     this.ui.buttonLoading.create(button);
     this.renderer.setAttribute(this.bbutton.nativeElement, 'disabled', '');
 
-    // send user data to Laravel API and returns a partial observer of the user
-    this.auth.registerUser(this.form.value).pipe(take(1)).subscribe(subscribeResponse);
+    this.auth.signup(this.form.value).subscribe(subscribeResponse);
 
   }
 
