@@ -1,4 +1,4 @@
-import { PostFormDataService } from "./post-form-data.service";
+import { ApiService } from './api.service';
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user.model";
@@ -7,14 +7,14 @@ import { User } from "../models/user.model";
    providedIn: "root",
 })
 export class AuthenticationService {
-   constructor(private http: PostFormDataService) {}
+   constructor(private api: ApiService) {}
 
    signup(user: User): Observable<{ access_token: string }> {
-      return this.http.postFormData("/auth/signup", user);
+      return this.api.postFormData("/auth/signup", user);
    }
 
    signin(user: User): Observable<{ access_token: string }> {
-      return this.http.postFormData("/auth/signin", user);
+      return this.api.postFormData("/auth/signin", user);
    }
 
    isLoggedIn(): boolean {
@@ -24,6 +24,10 @@ export class AuthenticationService {
    setSession(token: string) {
       localStorage.setItem("access_token", token);
       return localStorage.setItem("isLoggedIn", "true");
+   }
+
+   getSession(): string | null {
+      return localStorage.getItem("access_token");
    }
 
    logout() {
