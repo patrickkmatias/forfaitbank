@@ -59,22 +59,22 @@ export class LoginFormComponent implements OnInit {
       });
    }
 
-   submitForm() {
+   async submitForm() {
       this.setFeedback("loading");
-      return this.auth
-         .signin(this.form.value)
-         .pipe()
-         .subscribe({
-            complete: () => {
-               this.auth.login();
-               this.setFeedback("success");
-            },
-            error: (err: HttpErrorResponse) => {
-               this.auth.logout();
-               this.setFeedback("error");
-               console.error("ew, error", err);
-            },
-         });
+      return await this.auth.signin(this.form.value).subscribe({
+         next: (at) => {
+            this.auth.setSession(at.access_token);
+         },
+         complete: () => {
+            this.auth.login();
+            this.setFeedback("success");
+         },
+         error: (err: HttpErrorResponse) => {
+            this.auth.logout();
+            this.setFeedback("error");
+            console.error("ew, error", err);
+         },
+      });
    }
 
    closeForm() {

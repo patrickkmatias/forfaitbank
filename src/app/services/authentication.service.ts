@@ -21,10 +21,14 @@ export class AuthenticationService {
       return localStorage.getItem("isLoggedIn") == "true" ? true : false;
    }
 
+   setSession(token: string) {
+      return localStorage.setItem("access_token", token);
+   }
+
    login() {
       return localStorage.setItem("isLoggedIn", "true");
    }
-
+   
    logout() {
       return localStorage.setItem("isLoggedIn", "false");
    }
