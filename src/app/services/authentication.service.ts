@@ -22,14 +22,12 @@ export class AuthenticationService {
    }
 
    setSession(token: string) {
-      return localStorage.setItem("access_token", token);
-   }
-
-   login() {
+      localStorage.setItem("access_token", token);
       return localStorage.setItem("isLoggedIn", "true");
    }
-   
+
    logout() {
+      localStorage.removeItem("access_token");
       return localStorage.setItem("isLoggedIn", "false");
    }
 }

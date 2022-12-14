@@ -63,14 +63,12 @@ export class LoginFormComponent implements OnInit {
       this.setFeedback("loading");
       return await this.auth.signin(this.form.value).subscribe({
          next: (at) => {
-            this.auth.setSession(at.access_token);
+            if (at.access_token) this.auth.setSession(at.access_token);
          },
          complete: () => {
-            this.auth.login();
             this.setFeedback("success");
          },
          error: (err: HttpErrorResponse) => {
-            this.auth.logout();
             this.setFeedback("error");
             console.error("ew, error", err);
          },
