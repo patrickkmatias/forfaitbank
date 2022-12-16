@@ -7,23 +7,23 @@
     <!-- <h2 class="mb-4 font-bold">Dados da sua conta:</h2> -->
     <li class="mb-4">
       <p class="font-semibold">Nome completo:</p>
-      Patrick Matias da Silva
+      {{ user.name }}
     </li>
     <li class="mb-4">
       <p class="font-semibold">Email:</p>
-      patrick@forfait.org
+      {{ user.email }}
     </li>
     <li class="mb-4">
       <p class="font-semibold">Endereço:</p>
-      Rua Cinco de Julho, Guarulhos
+      {{ user.address }}
     </li>
     <li class="mb-4">
       <p class="font-semibold">CPF:</p>
-      485.345.993-08
+      {{ user.cpf }}
     </li>
     <li class="mb-4">
       <p class="font-semibold">Data de nascimento:</p>
-      22/11/2003
+      {{ user.birthdate | date: "dd/MM/yyyy" }}
     </li>
   </ul>
   <div

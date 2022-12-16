@@ -4,7 +4,7 @@
   <h1
     class="relative mx-auto my-16 text-2xl font-bold tracking-wide text-center text-emerald-50 w-fit h-fit grid-position"
   >
-    Olá, <span class="font-extrabold text-emerald-100">Patrick!</span>
+    Olá, <span class="font-extrabold text-emerald-100">{{ firstName }}!</span>
     <button
       id="logoutButton"
       (click)="logout()"
@@ -30,7 +30,7 @@
   <app-operations-table
     class="py-8 w-full h-auto sm:h-full grid-position"
   ></app-operations-table>
-  <app-user-detail
+  <app-user-detail (firstName)="firstName = $event"
     class="overflow-y-auto overflow-x-hidden self-start w-full sm:h-full grid-position"
   ></app-user-detail>
 </section>

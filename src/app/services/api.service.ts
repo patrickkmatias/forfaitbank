@@ -25,8 +25,8 @@ export class ApiService {
       return this.http.post(this._apiUrl + url, formData, { headers });
    }
 
-   public get(url: string): Observable<Object> {
-    return this.http.get(this._apiUrl + url);
+   public get<T>(url: string): Observable<T> {
+    return this.http.get<T>(this._apiUrl + url);
    }
 
 

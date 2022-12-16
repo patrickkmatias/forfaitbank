@@ -12,6 +12,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class PainelComponent implements OnInit {
 
+  firstName: string | undefined;
+
   constructor(
     private auth: AuthenticationService,
     private router: Router
