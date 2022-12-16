@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { AuthenticationService } from "./services/authentication.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+   selector: "app-root",
+   templateUrl: "./app.component.html",
 })
-export class AppComponent {
-  title = 'forfaitBank';
+export class AppComponent implements OnInit {
+   constructor(private auth: AuthenticationService) {}
+
+   ngOnInit() {
+      this.auth.validateSession();
+   }
 }

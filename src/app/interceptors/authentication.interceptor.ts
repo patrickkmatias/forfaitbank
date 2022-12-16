@@ -25,7 +25,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                "Bearer " + accessToken
             ),
          });
-         console.log(authRequest)
          return next.handle(authRequest);
       }
 
