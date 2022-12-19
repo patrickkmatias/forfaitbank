@@ -1,3 +1,4 @@
+import { OperationService } from './../../operation.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
@@ -11,6 +12,7 @@ import {
   selector: 'app-operation-form',
   templateUrl: './operation-form.component.html',
   styles: ['div#packagesContainer::-webkit-scrollbar{display: none}'],
+  providers: [OperationService]
 })
 export class OperationFormComponent implements OnInit {
   form: FormGroup = new FormGroup({
@@ -25,7 +27,7 @@ export class OperationFormComponent implements OnInit {
   @ViewChildren('bill10,bill50,bill100')
   bills!: QueryList<ElementRef>;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private operationService: OperationService) {}
 
   ngOnInit(): void {}
 
@@ -48,6 +50,7 @@ export class OperationFormComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form.value);
+    const operation = this.operationService.create(this.form.value)
+    console.log(operation.subscribe());
   }
 }
