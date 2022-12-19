@@ -3,7 +3,9 @@
   *ngIf="edit == false"
   class="flex flex-col justify-between items-center w-full h-auto"
 >
-  <ul class="self-start ml-6">
+  <ng-template #loading>Carregando...</ng-template>
+  
+  <ul class="self-start ml-6" *ngIf="user$ | async as user else loading">
     <!-- <h2 class="mb-4 font-bold">Dados da sua conta:</h2> -->
     <li class="mb-4">
       <p class="font-semibold">Nome completo:</p>
@@ -68,6 +70,6 @@
 </article>
 <app-register-form
   *ngIf="edit == true"
-  (closeFormEvent)="edit = !$event"
+  (closeFormEvent)="edit = !$event; getUserData()"
   [isEditMode]="true"
 ></app-register-form>

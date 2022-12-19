@@ -15,7 +15,7 @@ import { User } from "src/app/models/user.model";
    providers: [UserService],
 })
 export class UserDetailComponent implements OnInit {
-   user!: User;
+   user$ = this.userService.getCurrent()
 
    @Output("firstName") firstName = new EventEmitter<string>();
 
@@ -28,8 +28,7 @@ export class UserDetailComponent implements OnInit {
    ) {}
 
    ngOnInit(): void {
-      this.userService.getCurrent().subscribe((user: User) => {
-         this.user = user;
+      this.user$.subscribe((user: User) => {
          this.firstName.emit(user.name.split(" ").shift());
       });
    }
@@ -37,5 +36,11 @@ export class UserDetailComponent implements OnInit {
    logout(): void {
       this.auth.logout();
       this.router.navigate(["login"]);
+   }
+
+   getUserData() {
+      this.userService.getCurrent().subscribe((user: User) => {
+         this.firstName.emit(user.name.split(" ").shift());
+      });
    }
 }
