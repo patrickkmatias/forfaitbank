@@ -1,65 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { mockupOperations } from 'src/app/models/operation.model';
+import { OperationService } from "./../../operation.service";
+import { Component, OnInit } from "@angular/core";
+import { Operation } from "src/app/models/operation.model";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-operations-table',
-  templateUrl: './operations-table.component.html',
-  styles: ['ul::-webkit-scrollbar{display: none;}'],
+   selector: "app-operations-table",
+   templateUrl: "./operations-table.component.html",
+   styles: ["ul::-webkit-scrollbar{display: none;}"],
+   providers: [OperationService],
 })
 export class OperationsTableComponent implements OnInit {
+   operations$: Observable<Operation[]> = this.operationService.findAll();
 
-  showAddForm = false;
+   showAddForm = false;
 
-  operations = mockupOperations;
+   constructor(private operationService: OperationService) {}
 
-  constructor() { }
+   ngOnInit(): void {
+      console.log(this.operations$.subscribe());
+   }
 
-  ngOnInit(): void {
-  }
+   // it hides|shows all other app-operation that are not in focus.
+   toggleDetail(show: boolean, id: number) {
+      let displayProp = show ? "none" : "initial";
 
-    // it hides|shows all other app-operation that are not in focus.
-    toggleDetail(show: boolean, id: number) {
+      let allOperations = document.querySelectorAll("app-operation");
 
-      let displayProp = show ? 'none' : 'initial';
+      allOperations.forEach((op) => {
+         // if the id is different from the parameter id, put display none|block
+         if (Number(op.getAttribute("id")) != id) {
+            let _op = op as HTMLElement;
+            _op.style.display = displayProp;
+         }
+      });
+   }
 
-      let allOperations = document.querySelectorAll('app-operation');
-
-      allOperations.forEach(op => {
-        // if the id is different from the parameter id, put display none|block
-        if(Number(op.getAttribute('id')) != id) {
-          let _op = op as HTMLElement;
-          _op.style.display = displayProp;
-        }
-      })
-
-    }
-
-    toggleAddOperationView() {
-
+   toggleAddOperationView() {
       if (!this.showAddForm) {
+         document.getElementById("endDarkGradient")!.style.display = "none";
+         document.getElementById("operationsTable")!.style.display = "none";
 
-        document.getElementById('endDarkGradient')!.style.display = 'none';
-        document.getElementById('operationsTable')!.style.display = 'none';
-
-        document.getElementById('addOperationButton')!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+         document.getElementById(
+            "addOperationButton"
+         )!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
 
-        this.showAddForm = true;
+         this.showAddForm = true;
+      } else {
+         document.getElementById("endDarkGradient")!.style.display = "initial";
+         document.getElementById("operationsTable")!.style.display = "initial";
 
-      }
-      else
-      {
-
-        document.getElementById('endDarkGradient')!.style.display = 'initial';
-        document.getElementById('operationsTable')!.style.display = 'initial';
-
-
-        document.getElementById('addOperationButton')!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+         document.getElementById(
+            "addOperationButton"
+         )!.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>`;
 
-        this.showAddForm = false;
+         this.showAddForm = false;
       }
-
-    }
-
+   }
 }

@@ -29,7 +29,9 @@
     class="flex overflow-hidden relative justify-center items-center w-11/12 h-auto bg-emerald-900 rounded-xl sm:h-full"
   >
     <div class="overflow-y-auto w-full h-[60vh] sm:h-full" id="operationsTable">
+      <ng-template #loading>Carregando...</ng-template>
       <ul
+        *ngIf="operations$ | async as operations else loading"
         class="overflow-y-auto overflow-x-hidden relative top-0 left-0 w-full h-fit"
       >
         <app-operation
