@@ -22,7 +22,6 @@
         id="name"
         formControlName="name"
         type="text"
-        required
         autocomplete="name"
         class="block px-3 w-full rounded-md text-black border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="Seu nome completo"
@@ -40,7 +39,6 @@
         formControlName="email"
         type="email"
         autocomplete="email"
-        required
         class="block px-3 w-full rounded-md text-black border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="patrick@forfait.org"
       />
@@ -108,12 +106,14 @@
         type="password"
         formControlName="password"
         autocomplete="new-password"
-        required
         class="block px-3 w-full rounded-md text-black border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
         placeholder="••••••••"
       />
     </div>
   </div>
+  <p class="mt-1 text-xs text-slate-300" *ngIf="isEditMode">
+    Para enviar digite sua senha.
+  </p>
   <button
     id="submitButton"
     type="submit"

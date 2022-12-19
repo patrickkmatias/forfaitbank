@@ -10,4 +10,8 @@ export class UserService {
    getCurrent(): Observable<User> {
       return this.api.get<User>("/users/me");
    }
+
+   edit(user: User): Observable<User> {
+      return this.api.patchFormData<User>("/users", user);
+   }
 }

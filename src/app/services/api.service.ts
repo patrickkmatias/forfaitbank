@@ -13,10 +13,7 @@ export class ApiService {
 
    // create a helper function that accepts the data to be posted and the URL
    public postFormData(url: string, data: any): Observable<any> {
-      const formData = new URLSearchParams();
-      for (const key of Object.keys(data)) {
-         formData.append(key, data[key]);
-      }
+      const formData = this.setupFormData(data);
 
       const headers = new HttpHeaders({
          "Content-Type": "application/x-www-form-urlencoded",
@@ -26,8 +23,25 @@ export class ApiService {
    }
 
    public get<T>(url: string): Observable<T> {
-    return this.http.get<T>(this._apiUrl + url);
+      return this.http.get<T>(this._apiUrl + url);
    }
 
+   public patchFormData<T>(url: string, data: any): Observable<T> {
+      const formData = this.setupFormData(data);
 
-  }
+      const headers = new HttpHeaders({
+         "Content-Type": "application/x-www-form-urlencoded",
+      });
+
+      return this.http.patch<T>(this._apiUrl + url, formData, { headers });
+   }
+
+   private setupFormData(data: any): URLSearchParams {
+      const formData = new URLSearchParams();
+      for (const key of Object.keys(data)) {
+         formData.append(key, data[key]);
+      }
+
+      return formData
+   }
+}

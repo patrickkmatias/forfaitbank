@@ -1,3 +1,4 @@
+import { ApiService } from "./../../services/api.service";
 import {
    Component,
    ElementRef,
@@ -35,6 +36,7 @@ export class RegisterFormComponent implements OnInit {
    constructor(
       public ui: UIFeedbackService,
       private auth: AuthenticationService,
+      private api: ApiService,
       private renderer: Renderer2
    ) {}
 
@@ -65,7 +67,14 @@ export class RegisterFormComponent implements OnInit {
       });
    }
 
-   setupEditMode(): void {}
+   setupEditMode(): void {
+      for (let ctrl in this.form.controls) {
+         if (this.form.controls[ctrl].hasValidator(Validators.required)) {
+            if (ctrl === "password") continue;
+            this.form.controls[ctrl].removeValidators(Validators.required);
+         }
+      }
+   }
 
    closeForm(): void {
       gsap.to("#registerForm", {
@@ -78,7 +87,7 @@ export class RegisterFormComponent implements OnInit {
    async submitForm() {
       this.setFeedback("loading");
 
-      return await this.auth.signup(this.form.value).subscribe({
+      const response = {
          complete: () => {
             this.setFeedback("success");
          },
@@ -86,7 +95,25 @@ export class RegisterFormComponent implements OnInit {
             this.setFeedback("error");
             console.error("ew, error", err);
          },
-      });
+      };
+
+      if (this.isEditMode) {
+         const formData = Object.assign({}, this.form.value);
+
+         function removeNullFields(obj: any) {
+            Object.keys(obj).forEach((key) => {
+               if (obj[key] == null || obj[key].trim() == "") {
+                  delete obj[key];
+               }
+            });
+         }
+
+         removeNullFields(formData);
+
+         return this.api.patchFormData("/users", formData).subscribe(response);
+      }
+
+      return this.auth.signup(this.form.value).subscribe(response);
    }
 
    /**
