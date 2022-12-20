@@ -1,3 +1,5 @@
+<!-- Minimized Operation View -->
+
 <li
   *ngIf="!_showDetail"
   class="w-full h-auto relative p-4 flex justify-between bg-emerald-800"
@@ -7,11 +9,28 @@
       {{ operation.name }}
     </h2>
     <p>Valor: {{ operation.value | currency : "BRL" }}</p>
-    <p>Nota requisitada: {{ operation.billType }}</p>
+    <p
+      *ngIf="operation.status === 'concluded'"
+      class="text-emerald-100 font-medium"
+    >
+      Concluído
+    </p>
+    <p
+      *ngIf="operation.status === 'closed'"
+      class="text-emerald-100 font-medium"
+    >
+      Fechado
+    </p>
+    <p
+      *ngIf="operation.status === 'reserved'"
+      class="text-yellow-100 font-medium"
+    >
+      Reservado
+    </p>
   </div>
   <button
     id="operationDetailButton"
-    (click)="showDetail()"
+    (click)="showDetail(operation.id)"
     title="Ver mais informações da operação"
     class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative last:z-20"
   >
@@ -31,6 +50,34 @@
     </svg>
   </button>
 </li>
+<div
+  *ngIf="operation.children.length > 1 && !_showDetail"
+    title="Ver sub-operações"
+    class="w-full h-fit py-2 px-4 flex items-center justify-center rounded-b-xl"
+>
+  <div
+    (click)="showDetail(operation.id)"
+    class="flex items-center justify-center hover:cursor-pointer"
+  >
+    <p class="text-xs font-light">
+      Possui {{ operation.children.length }} sub-operações.
+    </p>
+    <svg
+      class="w-3 h-3"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+      />
+    </svg>
+  </div>
+</div>
 
 <!-- Operation Detail View -->
 
@@ -47,9 +94,7 @@
   </div>
   <div class="h-full w-full">
     <p class="h-fit w-fit hidden">Alguns pacotes desta operação:</p>
-    <div class="h-full w-full rounded-xl bg-emerald-900">
-
-    </div>
+    <div class="h-full w-full rounded-xl bg-emerald-900"></div>
   </div>
   <div class="flex self-end mt-2">
     <button
