@@ -1,9 +1,11 @@
+import { ApiService } from './../../services/api.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Operation } from 'src/app/models/operation.model';
 
 @Component({
   selector: 'app-operation',
   templateUrl: './operation.component.html',
+  providers: [ApiService]
 })
 export class OperationComponent implements OnInit {
 
@@ -13,7 +15,7 @@ export class OperationComponent implements OnInit {
 
   _showDetail = false;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
 
@@ -27,5 +29,9 @@ export class OperationComponent implements OnInit {
   closeDetail() {
     this.showDetailEvent.emit(false);
     this._showDetail = false;
+  }
+
+  delete(id: number) {
+    return this.api.delete(`/operations/${id}`).subscribe()
   }
 }

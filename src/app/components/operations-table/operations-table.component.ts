@@ -22,10 +22,11 @@ export class OperationsTableComponent implements OnChanges {
   showAddForm = false
 
   @ViewChild("addOperationButton") button!: ElementRef
+  @ViewChild("operationsUl") operationsUl!: ElementRef
 
   constructor(
     private operationService: OperationService,
-    private renderer: Renderer2,
+    private renderer: Renderer2
   ) {}
 
   ngOnChanges(): void {}
@@ -34,9 +35,9 @@ export class OperationsTableComponent implements OnChanges {
     let btn = this.button.nativeElement as HTMLElement
 
     if (loading) {
-      this.renderer.setAttribute(btn, 'disabled', '')
+      this.renderer.setAttribute(btn, "disabled", "")
     } else {
-      this.renderer.removeAttribute(btn, 'disabled', '')
+      this.renderer.removeAttribute(btn, "disabled", "")
     }
   }
 
@@ -53,6 +54,10 @@ export class OperationsTableComponent implements OnChanges {
         _op.style.display = displayProp
       }
     })
+
+    show
+      ? this.renderer.addClass(this.operationsUl.nativeElement, "h-full")
+      : this.renderer.removeClass(this.operationsUl.nativeElement, "h-full")
   }
 
   toggleAddOperationView() {
@@ -67,6 +72,8 @@ export class OperationsTableComponent implements OnChanges {
 
       this.showAddForm = true
     } else {
+      this.operations$ = this.operationService.findAll()
+
       document.getElementById("endDarkGradient")!.style.display = "initial"
       document.getElementById("operationsTable")!.style.display = "initial"
 

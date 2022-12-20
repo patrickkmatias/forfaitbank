@@ -32,6 +32,7 @@
     <div class="overflow-y-auto w-full h-[60vh] sm:h-full" id="operationsTable">
       <ng-template #loading>Carregando...</ng-template>
       <ul
+        #operationsUl
         *ngIf="operations$ | async as operations else loading"
         class="overflow-y-auto overflow-x-hidden relative top-0 left-0 w-full h-fit"
       >
