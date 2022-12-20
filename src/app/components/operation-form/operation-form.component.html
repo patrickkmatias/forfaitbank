@@ -6,7 +6,9 @@
   <h2 class="mb-2 text-xl font-medium text-emerald-100">Criar nova operação</h2>
 
   <div>
-    <label for="name" class="ml-1 mt-8 sm:mt-4 block text-base font-medium"
+    <label
+      for="name"
+      class="ml-1 mt-8 sm:mt-4 block text-base font-medium"
       >Nome da operação</label
     >
     <input
@@ -18,12 +20,14 @@
     />
   </div>
   <div class="flex flex-col items-start">
-    <label for="value" class="ml-1 mt-4 sm:mt-2 block text-base font-medium"
+    <label
+      for="value"
+      class="ml-1 mt-4 sm:mt-2 block text-base font-medium"
       >Qual será o valor da operação?</label
     >
     <div class="w-full h-fit relative">
       <p class="absolute left-0 pl-3 translate-center-y">
-        {{ form.get("value")?.value | currency: "BRL" }}
+        {{ form.get("value")?.value | currency : "BRL" }}
       </p>
       <input
         name="value"
@@ -45,7 +49,7 @@
     <div class="w-full h-auto mt-2 flex justify-start">
       <button
         #bill10
-        id='bill10'
+        id="bill10"
         (click)="toggleBill('10')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 hover:bg-emerald-600 rounded-lg cursor-pointer transition-colors duration-500"
       >
@@ -53,7 +57,7 @@
       </button>
       <button
         #bill50
-        id='bill50'
+        id="bill50"
         (click)="toggleBill('50')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 hover:bg-emerald-600 rounded-lg cursor-pointer transition-colors duration-500"
       >
@@ -61,7 +65,7 @@
       </button>
       <button
         #bill100
-        id='bill100'
+        id="bill100"
         (click)="toggleBill('100')"
         class="p-3 ml-3 w-auto h-auto flex justify-center items-center bg-emerald-700 hover:bg-emerald-600 rounded-lg cursor-pointer transition-colors duration-500"
       >
@@ -72,17 +76,41 @@
   <div
     id="packagesContainer"
     class="w-full h-32 flex my-4 overflow-x-scroll"
-  >
-
-  </div>
+  ></div>
   <div class="w-full h-fit flex flex-col justify-end">
     <button
-      type="submit"
+      #submitButton
+      *ngIf="ui.feedback !== 'error'"
       [disabled]="this.form.invalid"
       (click)="submitForm()"
+      type="submit"
       class="relative w-full rounded-md border border-transparent bg-emerald-700 py-2 px-4 my-0 mx-auto text-sm font-medium text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-500 disabled:opacity-50 disabled:bg-emerald-700"
     >
       Fazer nova operação
     </button>
+    <!-- Request feedback -->
+    <!-- Success -->
+    <div
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
+      class="p-4 mt-6 w-full font-bold text-center text-emerald-100 bg-emerald-600 rounded-md h-fit"
+      *ngIf="ui.feedback === 'success'"
+    >
+      <p>Operação feita com sucesso! =)</p>
+    </div>
+
+    <!-- Error -->
+    <div
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
+      *ngIf="ui.feedback === 'error'"
+      class="p-4 mt-6 w-full font-bold text-center text-gray-200 bg-red-700 rounded-md h-fit"
+    >
+      <p>Ops! Tivemos um problema ao criar nova operação =(</p>
+      <p class="mt-2 text-xs font-light">
+        A operação foi grande demais para ser feita na versão de teste! Tente
+        novamente com um valor menor ou notas maiores.
+      </p>
+    </div>
   </div>
 </form>
