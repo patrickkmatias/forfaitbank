@@ -1,25 +1,41 @@
+import { UIFeedbackService } from "./../../services/uifeedback.service"
 import { firstValueFrom } from "rxjs"
 import { OperationService } from "./../../operation.service"
 import { ApiService } from "./../../services/api.service"
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core"
 import { Operation } from "src/app/models/operation.model"
+import {
+  fadeInOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+} from "angular-animations"
 
 @Component({
   selector: "app-operation",
   templateUrl: "./operation.component.html",
-  providers: [ApiService, OperationService],
+  providers: [OperationService, UIFeedbackService],
+  animations: [fadeInOnEnterAnimation(), fadeOutOnLeaveAnimation()],
 })
 export class OperationComponent implements OnInit {
+  constructor(
+    private api: ApiService,
+    private operationService: OperationService,
+    public ui: UIFeedbackService
+  ) {}
   @Input() operation!: Operation
 
   @Output() showDetailEvent = new EventEmitter<boolean>()
 
-  _showDetail = false
+  @ViewChild("deleteButton") deleteBtn!: ElementRef
 
-  constructor(
-    private api: ApiService,
-    private operationService: OperationService
-  ) {}
+  _showDetail = false
 
   ngOnInit(): void {}
 
@@ -29,7 +45,7 @@ export class OperationComponent implements OnInit {
 
     const source = this.operationService.findOne(operationId)
     const operation = await firstValueFrom(source)
-    this.operation = operation;
+    this.operation = operation
 
     return operation
   }
@@ -40,6 +56,24 @@ export class OperationComponent implements OnInit {
   }
 
   delete(id: number) {
-    return this.api.delete(`/operations/${id}`).subscribe()
+    this.setFeedback("loading")
+
+    const response = {
+      complete: () => {
+        this.setFeedback("success")
+      },
+      error: (err: unknown) => {
+        this.setFeedback("error")
+        console.error("ew, error", err)
+      },
+    }
+
+    return this.api.delete(`/operations/${id}`).subscribe(response)
+  }
+
+  setFeedback(status: "loading" | "success" | "error") {
+    this.ui.feedback = status
+    if (status === "error")
+      this.ui.timer(5, () => (this.ui.feedback = undefined))
   }
 }
