@@ -4,12 +4,10 @@ import { OperationService } from "./../../operation.service"
 import { ApiService } from "./../../services/api.service"
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  ViewChild,
 } from "@angular/core"
 import { Operation } from "src/app/models/operation.model"
 import {
@@ -28,12 +26,11 @@ export class OperationComponent implements OnInit {
     private api: ApiService,
     private operationService: OperationService,
     public ui: UIFeedbackService
-  ) {}
+    ) {}
+  loadingDetail = false;
   @Input() operation!: Operation
 
   @Output() showDetailEvent = new EventEmitter<boolean>()
-
-  @ViewChild("deleteButton") deleteBtn!: ElementRef
 
   _showDetail = false
 
@@ -41,12 +38,16 @@ export class OperationComponent implements OnInit {
 
   async showDetail(operationId: number) {
     this.showDetailEvent.emit(true)
-    this._showDetail = true
-
+    this.loadingDetail = true;
+    
     const source = this.operationService.findOne(operationId)
     const operation = await firstValueFrom(source)
     this.operation = operation
 
+    this.loadingDetail = false;
+    this._showDetail = true
+
+    console.log(operation)
     return operation
   }
 

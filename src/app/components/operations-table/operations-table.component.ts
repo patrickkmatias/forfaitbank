@@ -43,7 +43,7 @@ export class OperationsTableComponent implements OnChanges {
 
   // it hides|shows all other app-operation that are not in focus.
   toggleDetail(show: boolean, id: number) {
-    let displayProp = show ? "none" : "initial"
+    let displayProp = show ? "none" : "flex"
 
     let allOperations = document.querySelectorAll("app-operation")
 
