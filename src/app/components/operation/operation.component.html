@@ -116,7 +116,7 @@
 
 <li
   *ngIf="_showDetail"
-  class="w-full h-full sticky top-0 left-0 z-40 p-4 flex flex-col justify-between bg-emerald-800"
+  class="w-full h-full sticky top-0 left-0 z-40 p-4 flex flex-col justify-between bg-emerald-800 overflow-hidden"
 >
   <div>
     <h2 class="mb-2 text-xl font-medium text-emerald-100">
@@ -160,19 +160,49 @@
     </div>
   </div>
   <div
-    class="h-full w-full"
+    [class.grid-cols-auto-2]="selectedPackage"
+    class="h-fit w-full bg-emerald-900 rounded-xl grid grid-rows-auto-1 relative overflow-hidden items-end"
     *ngIf="!operation.parentOperationId && operation.packages"
   >
-    <p class="h-fit w-fit">Alguns pacotes desta operação:</p>
+    <p
+      [class.mr-3]="selectedPackage"
+      class="h-fit w-fit ml-3 mt-[5px]"
+      style="grid-area: 1 / 1 / 2 / 2"
+    >
+      Alguns pacotes desta operação:
+    </p>
+    <div class="w-full h-fit relative overflow-x-scroll">
+      <div
+        class="w-fit h-fit p-4 pt-3 rounded-xl flex"
+        style="grid-area: 2 / 1 / 3 / 2"
+      >
+        <button
+          class="w-fit h-fit my-1 mx-2 first:ml-0 last:mr-4"
+          *ngFor="let pkg of operation.packages.slice(0, 20)"
+          (click)="selectPackage(pkg.id)"
+        >
+          <app-package
+            [package]="pkg"
+            [id]="pkg.id"
+          ></app-package>
+        </button>
+      </div>
+    </div>
     <div
-      class="w-full h-fit max-h-16 p-4 rounded-xl bg-emerald-900 flex flex-wrap"
+      *ngIf="selectedPackage"
+      style="grid-area: 1 / 2 / 3 / 3"
+      class="m-4"
     >
       <app-package
-        *ngFor="let pkg of operation.packages.slice(0, 20)"
-        [package]="pkg"
-        class="m-1"
+        [package]="selectedPackage"
+        [minify]="false"
       ></app-package>
     </div>
+    <div
+      [class.right-40]="selectedPackage"
+      id="endDarkGradient"
+      class="w-[5%] h-full absolute z-10 right-0 top-0 bg-gradient-to-l from-black to-transparent opacity-20"
+    ></div>
   </div>
   <div class="flex self-end mt-2">
     <!-- Error message -->
