@@ -206,7 +206,7 @@ interface HSL {
  * @interface ColorPalette
  * @extends {HSL}
  */
-interface ColorPalette extends HSL {
+export interface ColorPalette extends HSL {
   50: string;
   100: string;
   200: string;

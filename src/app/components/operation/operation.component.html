@@ -189,6 +189,8 @@
       </div>
     </div>
     <div
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
       *ngIf="selectedPackage"
       style="grid-area: 1 / 2 / 3 / 3"
       class="m-4"
@@ -199,9 +201,9 @@
       ></app-package>
     </div>
     <div
-      [class.right-40]="selectedPackage"
+      [class.!right-40]="selectedPackage"
       id="endDarkGradient"
-      class="w-[5%] h-full absolute z-10 right-0 top-0 bg-gradient-to-l from-black to-transparent opacity-20"
+      class="w-[5%] h-full absolute z-10 right-0 top-0 bg-gradient-to-l from-black to-transparent opacity-20 transition-all duration-300"
     ></div>
   </div>
   <div class="flex self-end mt-2">

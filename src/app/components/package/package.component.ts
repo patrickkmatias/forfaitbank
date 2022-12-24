@@ -5,13 +5,18 @@ import {
   AfterViewInit,
   ViewChild,
   Renderer2,
+  OnChanges,
 } from "@angular/core"
 import { Package } from "src/app/models/package.model"
-import { ColorGeneratorService } from "src/app/services/color-generator.service"
+import {
+  ColorGeneratorService,
+  ColorPalette,
+} from "src/app/services/color-generator.service"
 
 @Component({
   selector: "app-package",
   providers: [ColorGeneratorService],
+  styles: ["* { transition: all .5s }"],
   template: `
     <div class="flex flex-col justify-center items-center">
       <div
@@ -28,56 +33,61 @@ import { ColorGeneratorService } from "src/app/services/color-generator.service"
       >
         <li class="flex justify-between">
           <span>💵</span
-          ><span class="flex items-center text-slate-900 text-sm">{{
+          ><span class="flex items-center text-black text-sm">{{
             pkg.billType | currency : "BRL"
           }}</span>
         </li>
         <li class="flex justify-between">
           <span>🔢</span
-          ><span class="flex items-center text-slate-900 text-sm">{{
+          ><span class="flex items-center text-black text-sm">{{
             pkg.billQuantity
           }}</span>
         </li>
         <li class="flex justify-between">
           <span class="pl-[0.1rem]">💰</span
-          ><span class="flex items-center text-slate-900 text-sm"
-            >{{
-            <!-- totalValue | currency: 'BRL' -->
-            }}</span
-          >
+          ><span class="flex items-center text-black text-sm">{{
+            pkg.billQuantity * pkg.billType | currency : "BRL"
+          }}</span>
         </li>
       </ul>
     </div>
   `,
 })
-export class PackageComponent implements AfterViewInit {
+export class PackageComponent implements AfterViewInit, OnChanges {
   @ViewChild("ul") ul!: ElementRef
   @ViewChild("h1") h1!: ElementRef
   @ViewChild("h1wrapper") h1wrapper!: ElementRef
   @Input("package") pkg!: Package
   @Input() minify: boolean = true
 
+  palette!: ColorPalette
+
+  iconFilter!: string
+
   constructor(private renderer: Renderer2, private cg: ColorGeneratorService) {}
 
+  ngOnChanges(): void {
+    this.palette = this.cg.generateColorPalette(this.pkg.color)
+    this.iconFilter = this.cg.correctIconColor(this.pkg.color)
+    this.ngAfterViewInit()
+  }
+
   ngAfterViewInit(): void {
-    let palette = this.cg.generateColorPalette(this.pkg.color)
-
-    let filter = this.cg.correctIconColor(this.pkg.color)
-
     // add random background color
-
-    if (!this.minify) {
+    try {
+      if (!this.minify) {
+        this.renderer.setStyle(
+          this.ul.nativeElement,
+          "background-color",
+          this.palette[200]
+        )
+      }
       this.renderer.setStyle(
-        this.ul.nativeElement,
+        this.h1wrapper.nativeElement,
         "background-color",
-        palette[200]
+        this.palette[500]
       )
-    }
-    this.renderer.setStyle(
-      this.h1wrapper.nativeElement,
-      "background-color",
-      palette[500]
-    )
-    this.renderer.setStyle(this.h1.nativeElement, "filter", filter)
+      this.renderer.setStyle(this.h1.nativeElement, "filter", this.iconFilter)
+    } catch {}
   }
 }
