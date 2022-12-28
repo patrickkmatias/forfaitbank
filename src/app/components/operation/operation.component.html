@@ -63,7 +63,7 @@
     class="flex items-center justify-center hover:cursor-pointer"
   >
     <p class="text-xs font-light">
-      Possui {{ operation.children.length }} sub-operações.
+      Possui {{ operation.children.length }} sub-operações
     </p>
     <svg
       class="w-3 h-3"
@@ -174,8 +174,8 @@
       <tr class="flex mb-2">
         <td class="w-6 flex justify-center">🧳</td>
         <td class="w-full flex justify-between ml-2">
-          <p>Quantidade de pacotes:</p>
-          <p>{{ operation.packages.length }}</p>
+          <p>Quantidade de {{ operation.parentOperationId ? 'pacotes' : 'sub-operações' }}:</p>
+          <p>{{ operation.parentOperationId ? operation.packages.length : operation.children.length }}</p>
         </td>
       </tr>
       <tr class="flex mb-2">
