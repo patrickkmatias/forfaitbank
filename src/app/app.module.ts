@@ -18,6 +18,7 @@ import { OperationsTableComponent } from './components/operations-table/operatio
 import { OperationFormComponent } from './components/operation-form/operation-form.component';
 import { PackageComponent } from './components/package/package.component';
 import { MaxWidthDirective } from './max-width.directive';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MaxWidthDirective } from './max-width.directive';
     OperationsTableComponent,
     OperationFormComponent,
     PackageComponent,
-    MaxWidthDirective
+    MaxWidthDirective,
+    IconComponent
   ],
   imports: [
     BrowserModule,
