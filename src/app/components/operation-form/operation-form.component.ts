@@ -38,7 +38,7 @@ export class OperationFormComponent implements OnInit {
 
   @ViewChild("submitButton") submitButton!: ElementRef
 
-  @Output() disableReturn = new EventEmitter<boolean>()
+  @Output() isLoading = new EventEmitter<boolean>()
 
   constructor(
     private renderer: Renderer2,
@@ -91,13 +91,13 @@ export class OperationFormComponent implements OnInit {
 
     if (status === "loading") {
       this.ui.buttonLoading.create(btn)
-      this.disableReturn.emit(true)
+      this.isLoading.emit(true)
       return
     }
 
     if (status === "success" || status === "error") {
       this.ui.buttonLoading.dismiss(btn)
-      this.disableReturn.emit(false)
+      this.isLoading.emit(false)
     }
     this.ui.timer(5, () => (this.ui.feedback = undefined))
   }
