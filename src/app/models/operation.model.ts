@@ -6,6 +6,7 @@ export interface Operation {
   billType: 10 | 50 | 100
   status: "concluded" | "closed" | "reserved"
   parentOperationId?: number
+  subId?: number
   createdAt: Date
   updatedAt: Date
   userId: number

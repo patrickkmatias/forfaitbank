@@ -27,6 +27,7 @@ export class OperationsTableComponent {
 
   showFilters = false
   showAddForm = false
+  showSubOperations = false
   selectedOperationId: number = -1
 
   select(operationId: number) {

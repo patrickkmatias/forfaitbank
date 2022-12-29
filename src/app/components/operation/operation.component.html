@@ -7,24 +7,43 @@
     <h2 class="mb-2 text-xl font-medium text-emerald-100">
       {{ operation.name }}
     </h2>
-    <p
-      class="text-emerald-100 font-medium"
-      [class.!text-yellow-100]="operation.status === 'reserved'"
+    <div
+      class="w-fit h-fit px-2 py-1 flex items-center bg-emerald-900 rounded-lg text-emerald-100"
     >
-      {{ status }}
-    </p>
-    <p class="mt-1">Valor: {{ operation.value | currency : "BRL" }}</p>
+      <p
+        class="font-medium"
+        [class.!text-yellow-100]="operation.status === 'reserved'"
+      >
+        {{ status }}
+      </p>
+      <span
+        class="mx-1 font-bold text-emerald-800"
+        *ngIf="operation.parentOperationId"
+        >|</span
+      >
+      <p
+        class="text-xs font-medium"
+        *ngIf="operation.parentOperationId"
+      >
+        Sub-operação {{ operation.subId }}
+      </p>
+    </div>
+    <p class="ml-1 mt-1">Valor: {{ operation.value | currency : "BRL" }}</p>
   </div>
   <button
     #showDetailButton
     *ngIf="!loadingDetail"
     (click)="loadOperation()"
     title="Ver mais informações da operação"
-    class="w-8 h-8 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative last:z-20"
+    class="w-8 h-8 mb-1 mr-1 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative"
   >
     <app-icon icon="three-dots"></app-icon>
   </button>
 </li>
+<div
+  *ngIf="operation.children.length <= 0 && !showDetail"
+  class="w-full h-1 bg-emerald-900"
+></div>
 <div
   #subOperations
   *ngIf="operation.children.length > 0 && !showDetail"

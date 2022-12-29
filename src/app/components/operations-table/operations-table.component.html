@@ -8,6 +8,18 @@
       class="flex"
     >
       <button
+        #filter
+        *ngIf="!showAddForm && selectedOperationId < 0"
+        [@fadeInOnEnter]
+        [@fadeOutOnLeave]
+        icon="adjustments"
+        title="Filtrar operações"
+        (click)="toggleFilters()"
+        class="mr-2 flex justify-center items-center self-end w-8 h-8 bg-emerald-700 rounded-lg transition-all duration-500 origin-center cursor-pointer hover:scale-125 disabled:opacity-50 disabled:cursor-default"
+      >
+        <app-icon icon="adjustments"></app-icon>
+      </button>
+      <button
         #addAndClose
         [title]="showAddForm ? 'Fechar painel' : 'Criar nova operação'"
         [disabled]="loadingTable"
@@ -21,6 +33,27 @@
   <div
     class="flex overflow-hidden relative justify-center items-center w-11/12 h-auto bg-emerald-900 rounded-xl sm:h-full"
   >
+    <table
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
+      *ngIf="showFilters && !showAddForm && selectedOperationId < 0"
+      class="w-full h-fit absolute z-10 top-0 bg-emerald-900"
+    >
+      <tr class="p-4">
+        <td class="p-4">Mostrar sub-operações</td>
+        <td>
+          <input
+            type="checkbox"
+            [(ngModel)]="showSubOperations"
+            class="w-5 h-5 rounded-md bg-emerald-800 checked:bg-emerald-500 hover:bg-emerald-600 accent-emerald-500 transition-all duration-300"
+          />
+        </td>
+      </tr>
+      <div
+        #darkGradient
+        class="w-full h-[2vh] absolute top-full bg-gradient-to-b from-black to-transparent opacity-20 pointer-events-none"
+      ></div>
+    </table>
     <div
       *ngIf="!showAddForm"
       #operationsTable
@@ -37,8 +70,10 @@
           *ngFor="let op of operations"
           id="{{ op.id }}"
           [operation]="op"
-          [class.hidden]="selectedOperationId > 0 && selectedOperationId !== op.id"
-          [class.!hidden]="op.parentOperationId"
+          [class.hidden]="
+            selectedOperationId > 0 && selectedOperationId !== op.id
+          "
+          [class.!hidden]="!showSubOperations && op.parentOperationId"
           (selectIndex)="select($event)"
           class="flex flex-col h-full"
         ></app-operation>
@@ -48,6 +83,7 @@
           icon="spinner-loader"
           size="xl"
         ></app-icon>
+        <div class="w-full h-full bg-emerald-900 relative z-20"></div>
       </ng-template>
     </div>
     <app-operation-form
@@ -58,7 +94,7 @@
     <div
       id="endDarkGradient"
       *ngIf="!showAddForm"
-      class="w-full h-[10%] absolute z-10 bottom-0 bg-gradient-to-t from-black to-transparent opacity-20"
+      class="w-full h-[10%] absolute z-10 bottom-0 bg-gradient-to-t from-black to-transparent opacity-20 pointer-events-none"
     ></div>
   </div>
 </section>

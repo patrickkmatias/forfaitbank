@@ -1,7 +1,7 @@
 <div
   *ngIf="icon === 'spinner-loader' || icon === 'spinner-loader-relative'"
   role="status"
-  [ngClass]="{ 'absolute translate-center': icon === 'spinner-loader' }"
+  [ngClass]="{ 'absolute translate-center z-30': icon === 'spinner-loader' }"
 >
   <svg
     aria-hidden="true"
