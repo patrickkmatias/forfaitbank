@@ -19,6 +19,7 @@ import { OperationFormComponent } from './components/operation-form/operation-fo
 import { PackageComponent } from './components/package/package.component';
 import { MaxWidthDirective } from './max-width.directive';
 import { IconComponent } from './components/icon/icon.component';
+import { OperationDetailComponent } from './components/operation-detail/operation-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { IconComponent } from './components/icon/icon.component';
     PackageComponent,
     MaxWidthDirective,
     IconComponent,
+    OperationDetailComponent
   ],
   imports: [
     BrowserModule,
