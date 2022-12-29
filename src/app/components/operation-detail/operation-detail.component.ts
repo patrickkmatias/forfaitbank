@@ -3,6 +3,7 @@ import { Operation } from "../../models/operation.model"
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 import { UIFeedbackService } from "../../services/uifeedback.service"
 import { Package } from "../../models/package.model"
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from "angular-animations"
 
 @Component({
   selector: "app-operation-detail",
@@ -21,12 +22,14 @@ import { Package } from "../../models/package.model"
       }
     `,
   ],
+  animations: [fadeInOnEnterAnimation(), fadeOutOnLeaveAnimation()],
 })
 export class OperationDetailComponent implements OnInit {
   @Input() operation!: Operation
   @Output() onClose = new EventEmitter<boolean>()
 
   status = "Indefinido"
+  confirmDeletion?: boolean
 
   selectedPackage: Package | null = null
   selectedPackageId?: number
@@ -59,7 +62,14 @@ export class OperationDetailComponent implements OnInit {
     }
   }
 
-  delete(id: number) {
+  deleteOperation() {
+    if(this.confirmDeletion === undefined) {
+      this.confirmDeletion = false
+      return
+    } else {
+      this.confirmDeletion = true
+    }
+
     this.setFeedback("loading")
 
     const response = {
@@ -72,7 +82,7 @@ export class OperationDetailComponent implements OnInit {
       },
     }
 
-    return this.api.delete(`/operations/${id}`).subscribe(response)
+    return this.api.delete(`/operations/${this.operation.id}`).subscribe(response)
   }
 
   setFeedback(status: "loading" | "success" | "error") {
@@ -81,7 +91,11 @@ export class OperationDetailComponent implements OnInit {
       this.ui.timer(5, () => (this.ui.feedback = undefined))
   }
 
-  closeDetail() {
+  return() {
+    if(this.confirmDeletion === false) {
+      this.confirmDeletion = undefined
+      return
+    }
     this.onClose.emit(true)
   }
 }

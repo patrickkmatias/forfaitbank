@@ -144,14 +144,26 @@
         Ops! Tivemos um erro ao deletar a operação!
       </p>
     </div>
+    <!-- Confirm message -->
+    <div
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
+      *ngIf="confirmDeletion === false"
+      class="p-2 mr-2 w-full font-bold text-center text-gray-200 bg-emerald-900 rounded-md h-fit"
+    >
+      <p class="text-xs font-light whitespace-nowrap">
+        Tem certeza em deletar esta operação?
+      </p>
+    </div>
     <!-- Delete button and feedbacks -->
     <button
       #deleteButton
       id="deleteButton"
-      (click)="delete(operation.id)"
+      (click)="deleteOperation()"
       title="Excluir operação"
       [disabled]="ui.feedback != undefined"
       [class.!bg-emerald-500]="ui.feedback === 'success'"
+      [class.!bg-emerald-800]="confirmDeletion === false"
       class="w-8 h-8 mr-2 flex justify-center items-center bg-red-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 shrink-0"
     >
       <!-- Loading -->
@@ -162,7 +174,7 @@
       ></app-icon>
       <!-- Neutral -->
       <app-icon
-        *ngIf="ui.feedback === undefined"
+        *ngIf="ui.feedback === undefined && confirmDeletion === undefined"
         icon="trash-can"
       ></app-icon>
       <!-- Success -->
@@ -170,16 +182,16 @@
         *ngIf="ui.feedback === 'success'"
         icon="check"
       ></app-icon>
-      <!-- Error icon -->
+      <!-- Alert icon -->
       <app-icon
-        *ngIf="ui.feedback === 'error'"
+        *ngIf="ui.feedback === 'error' || confirmDeletion === false"
         icon="alert"
       ></app-icon>
     </button>
     <button
       id="operationDetailButton"
-      (click)="closeDetail()"
-      title="Minimizar operação"
+      (click)="return()"
+      [title]="confirmDeletion === false ? 'Cancelar deleção' : 'Minimizar operação'"
       class="w-8 h-8 flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 shrink-0"
     >
       <svg
