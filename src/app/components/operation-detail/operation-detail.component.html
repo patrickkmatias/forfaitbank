@@ -9,17 +9,23 @@
         {{ operation.name }}
       </h2>
       <div class="w-1/4 flex flex-col justify-between items-end">
-        <p
-          class="text-emerald-100 font-medium"
-          [class.!text-yellow-100]="operation.status === 'reserved'"
+        <div
+          class="w-fit h-fit px-2 py-1 flex flex-col items-center bg-emerald-900 rounded-lg text-emerald-100"
         >
-          {{ status }}
-        </p>
-        <div>
+          <p
+            class="text-emerald-100 font-medium"
+            [class.!text-yellow-100]="operation.status === 'reserved'"
+          >
+            {{ status }}
+          </p>
+          <span
+            *ngIf="operation.parentOperationId"
+            class="w-full h-1 my-1 bg-emerald-800"
+          ></span>
           <button
             *ngIf="operation.parentOperationId"
             (click)="showParent()"
-            class="w-fit h-fit p-2 text-xs font-light flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer hover:bg-emerald-600 transition-all duration-500"
+            class="w-fit h-fit text-xs font-light flex justify-center items-center cursor-pointer hover:text-emerald-200 transition-all duration-500"
           >
             Ver operação pai
           </button>
@@ -27,28 +33,39 @@
       </div>
     </div>
 
-    <table class="w-full h-fit flex flex-col mt-4">
-      <tr class="flex mb-2">
+    <table
+      class="w-full h-fit flex flex-col mt-4 pt-4 rounded-t-lg bg-emerald-900"
+    >
+      <tr class="flex mb-4 pr-3 pl-2 relative">
         <td class="w-6 flex justify-center">💰</td>
         <td class="w-full flex justify-between ml-2">
           <p class="pl-[0.1rem]">Valor:</p>
           <p>{{ operation.value | currency : "BRL" }}</p>
         </td>
+        <span class="w-full h-2 bg-emerald-700 absolute top-full left-0"></span>
       </tr>
-      <tr class="flex mb-2">
+      <tr class="flex mb-4 pr-3 pl-2 relative">
         <td class="w-6 flex justify-center">💵</td>
         <td class="w-full flex justify-between ml-2">
           <p>Nota requisitada:</p>
           <p>{{ operation.billType | currency : "BRL" }}</p>
         </td>
+        <span class="w-full h-2 bg-emerald-700 absolute top-full left-0"></span>
       </tr>
       <tr
-        *ngIf="
-          operation.parentOperationId ||
-          (!operation.parentOperationId && !operation.children.length)
-        "
-        class="flex mb-2"
+        *ngIf="operation.children.length > 0"
+        class="flex mb-4 pr-3 pl-2 relative"
       >
+        <td class="w-6 flex justify-center">🔢</td>
+        <td class="w-full flex justify-between ml-2">
+          <p>Quantidade de sub-operações:</p>
+          <p>
+            {{ operation.children.length }}
+          </p>
+        </td>
+        <span class="w-full h-2 bg-emerald-700 absolute top-full left-0"></span>
+      </tr>
+      <tr class="flex mb-4 pr-3 pl-2 relative">
         <td class="w-6 flex justify-center">🧳</td>
         <td class="w-full flex justify-between ml-2">
           <p>Quantidade de pacotes:</p>
@@ -56,19 +73,21 @@
             {{ operation.packages.length }}
           </p>
         </td>
+        <span class="w-full h-2 bg-emerald-700 absolute top-full left-0"></span>
       </tr>
-      <tr class="flex mb-2">
+      <tr class="flex pr-3 pl-2 relative">
         <td class="w-6 flex justify-center">📅</td>
         <td class="w-full flex justify-between ml-2">
           <p>Criado em:</p>
           <p>{{ operation.createdAt | date : "dd/MM/yyyy" }}</p>
         </td>
+        <span class="w-full h-2 bg-emerald-700 absolute top-full left-0"></span>
       </tr>
     </table>
   </div>
   <div
     [class.grid-cols-auto-2]="selectedPackage"
-    class="h-fit w-full bg-emerald-900 rounded-xl grid grid-rows-auto-1 relative overflow-hidden items-end"
+    class="h-fit w-full bg-emerald-900 rounded-lg grid grid-rows-auto-1 relative overflow-hidden items-end"
     *ngIf="operation.packages.length > 0"
   >
     <p
@@ -80,7 +99,7 @@
     </p>
     <div class="w-full h-fit relative overflow-x-scroll">
       <div
-        class="w-fit h-fit p-4 pt-3 rounded-xl flex"
+        class="w-fit h-fit p-4 pt-3 rounded-lg flex"
         style="grid-area: 2 / 1 / 3 / 2"
       >
         <button
