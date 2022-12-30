@@ -16,6 +16,8 @@ export class IconComponent implements OnChanges {
     | "trash-can"
     | "check"
     | "alert"
+    | "question"
+    | "return"
 
   @Input() size: "normal" | "xs" | "sm" | "lg" | "xl" = "normal"
 

@@ -132,7 +132,10 @@
       class="w-[5%] h-full absolute z-10 right-0 top-0 bg-gradient-to-l from-black to-transparent opacity-20 transition-all duration-300"
     ></div>
   </div>
-  <div class="flex self-end mt-2">
+  <div
+    #buttonsRow
+    class="flex self-end mt-2"
+  >
     <!-- Error message -->
     <div
       [@fadeInOnEnter]
@@ -163,7 +166,7 @@
       title="Excluir operação"
       [disabled]="ui.feedback != undefined"
       [class.!bg-emerald-500]="ui.feedback === 'success'"
-      [class.!bg-emerald-800]="confirmDeletion === false"
+      [class.!bg-emerald-700]="confirmDeletion === false"
       class="w-8 h-8 mr-2 flex justify-center items-center bg-red-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 shrink-0"
     >
       <!-- Loading -->
@@ -184,30 +187,24 @@
       ></app-icon>
       <!-- Alert icon -->
       <app-icon
-        *ngIf="ui.feedback === 'error' || confirmDeletion === false"
+        *ngIf="ui.feedback === 'error'"
         icon="alert"
+      ></app-icon>
+      <!-- Question icon -->
+      <app-icon
+        *ngIf="confirmDeletion === false"
+        icon="question"
       ></app-icon>
     </button>
     <button
-      id="operationDetailButton"
+      #returnButton
       (click)="return()"
-      [title]="confirmDeletion === false ? 'Cancelar deleção' : 'Minimizar operação'"
+      [title]="
+        confirmDeletion === false ? 'Cancelar deleção' : 'Minimizar operação'
+      "
       class="w-8 h-8 flex justify-center items-center bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 shrink-0"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-        />
-      </svg>
+      <app-icon icon="return"></app-icon>
     </button>
   </div>
 </li>
