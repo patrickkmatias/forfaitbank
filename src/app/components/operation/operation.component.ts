@@ -1,4 +1,3 @@
-import { Package } from "./../../models/package.model"
 import { firstValueFrom } from "rxjs"
 import { OperationService } from "./../../operation.service"
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
@@ -19,12 +18,17 @@ export class OperationComponent implements OnInit {
   @Input() operation!: Operation
   @Output() selectIndex = new EventEmitter<number>()
 
+  isParent?: boolean
   status?: string
-  loadingDetail = false
-  showDetail = false
   cachedOperation?: Operation
 
+  loadingDetail = false
+  showDetail = false
+  showCancel = false
+
   ngOnInit(): void {
+    this.isParent = this.operation.children.length > 0 ? true : false
+
     this.status =
       this.operation.status === "concluded"
         ? "Concluído"
@@ -40,13 +44,27 @@ export class OperationComponent implements OnInit {
     this.loadingDetail = true
 
     if (!this.cachedOperation) {
-      const source = this.operationService.findOne(this.operation.id)
-      const operation = await firstValueFrom(source)
-      this.cachedOperation = operation
+      setTimeout(() => {
+        this.showCancel = true
+      }, 5000);
+
+      const request = this.operationService.findOne(this.operation.id)
+      this.cachedOperation = await firstValueFrom(request)
+
+      if (this.isParent) {
+        // load children
+        const request = this.operationService.findChildren(this.operation.id)
+        this.cachedOperation.children = await firstValueFrom(request)
+      }
     }
 
     this.loadingDetail = false
     this.showDetail = true
+  }
+
+  cancel() {
+    this.loadingDetail = false
+    this.cachedOperation = undefined;
   }
 
   closeDetail() {

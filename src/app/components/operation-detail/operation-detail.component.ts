@@ -3,7 +3,10 @@ import { Operation } from "../../models/operation.model"
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 import { UIFeedbackService } from "../../services/uifeedback.service"
 import { Package } from "../../models/package.model"
-import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from "angular-animations"
+import {
+  fadeInOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+} from "angular-animations"
 
 @Component({
   selector: "app-operation-detail",
@@ -18,6 +21,7 @@ import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from "angular-animati
         ::-webkit-scrollbar {
           display: block;
           height: 0.7rem;
+          width: 1rem;
         }
       }
     `,
@@ -28,15 +32,20 @@ export class OperationDetailComponent implements OnInit {
   @Input() operation!: Operation
   @Output() onClose = new EventEmitter<boolean>()
 
+  isParent?: boolean
   status = "Indefinido"
   confirmDeletion?: boolean
+
+  subOperations: Operation[] | null = null;
 
   selectedPackage: Package | null = null
   selectedPackageId?: number
 
   constructor(public ui: UIFeedbackService, private api: ApiService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.isParent = this.operation.children.length > 0 ? true : false
+
     this.status =
       this.operation.status === "concluded"
         ? "Concluído"
@@ -45,6 +54,10 @@ export class OperationDetailComponent implements OnInit {
         : this.operation.status === "reserved"
         ? "Reservado"
         : "Indefinido"
+
+    this.subOperations = this.isParent
+      ? <Operation[]>this.operation.children
+      : null
   }
 
   showParent() {
@@ -53,7 +66,7 @@ export class OperationDetailComponent implements OnInit {
 
   selectPackage(id: number) {
     if (this.selectedPackage == null || this.selectedPackage.id !== id) {
-      const index = this.operation.packages.findIndex((pkg) => pkg.id === id)!
+      const index = this.operation.packages.findIndex(pkg => pkg.id === id)!
       this.selectedPackage = null
 
       this.selectedPackage = this.operation.packages[index]
@@ -63,7 +76,7 @@ export class OperationDetailComponent implements OnInit {
   }
 
   deleteOperation() {
-    if(this.confirmDeletion === undefined) {
+    if (this.confirmDeletion === undefined) {
       this.confirmDeletion = false
       return
     } else {
@@ -82,7 +95,9 @@ export class OperationDetailComponent implements OnInit {
       },
     }
 
-    return this.api.delete(`/operations/${this.operation.id}`).subscribe(response)
+    return this.api
+      .delete(`/operations/${this.operation.id}`)
+      .subscribe(response)
   }
 
   setFeedback(status: "loading" | "success" | "error") {
@@ -92,7 +107,7 @@ export class OperationDetailComponent implements OnInit {
   }
 
   return() {
-    if(this.confirmDeletion === false) {
+    if (this.confirmDeletion === false) {
       this.confirmDeletion = undefined
       return
     }
