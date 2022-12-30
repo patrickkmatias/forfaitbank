@@ -11,6 +11,10 @@ export class OperationService {
       return this.api.get<Operation[]>("/operations");
    }
 
+   findChildren(parentOperationId: number) {
+      return this.api.post<Operation[]>(`/operations/${parentOperationId}`)
+   }
+
    findOne(operationId: number) {
       return this.api.get<Operation>(`/operations/${operationId}`);
    }

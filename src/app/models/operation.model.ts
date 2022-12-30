@@ -11,7 +11,6 @@ export interface Operation {
   updatedAt: Date
   userId: number
 
-  /** Children operations ID */
-  children: number[]
+  children: Operation[] | Partial<Operation>[]
   packages: Package[]
 }

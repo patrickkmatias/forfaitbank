@@ -22,7 +22,7 @@ export class ApiService {
       return this.http.post<T>(this._apiUrl + url, formData, { headers });
    }
 
-   public post<T>(url: string, data: any): Observable<T> {
+   public post<T>(url: string, data?: any): Observable<T> {
       return this.http.post<T>(this._apiUrl + url, data);
    }
 
