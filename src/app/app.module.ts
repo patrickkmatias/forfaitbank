@@ -20,6 +20,7 @@ import { PackageComponent } from './components/package/package.component';
 import { MaxWidthDirective } from './max-width.directive';
 import { IconComponent } from './components/icon/icon.component';
 import { OperationDetailComponent } from './components/operation-detail/operation-detail.component';
+import { SubOperationsTableComponent } from './components/sub-operations-table/sub-operations-table.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OperationDetailComponent } from './components/operation-detail/operatio
     PackageComponent,
     MaxWidthDirective,
     IconComponent,
-    OperationDetailComponent
+    OperationDetailComponent,
+    SubOperationsTableComponent
   ],
   imports: [
     BrowserModule,
