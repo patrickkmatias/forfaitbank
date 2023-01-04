@@ -1,10 +1,11 @@
 <!-- Operation Detail View -->
 
 <li
+  [class.pt-0]="minifiedSubOperationView"
   class="w-full h-full sticky top-0 left-0 z-40 p-4 flex flex-col justify-between bg-emerald-800 overflow-hidden"
 >
   <div>
-    <div class="flex mb-6 items-center">
+    <div *ngIf="!minifiedSubOperationView" class="flex mb-6 items-center">
       <h2 class="w-3/4 text-xl font-medium text-emerald-100">
         {{ operation.name }}
       </h2>
@@ -35,9 +36,10 @@
 
     <table
       *ngIf="!maximizeSubOperation"
-      class="w-full h-fit flex flex-col mt-4 pt-4 rounded-t-lg bg-emerald-900"
+      [class.mt-4]="!minifiedSubOperationView"
+      class="w-full h-fit flex flex-col pt-4 rounded-t-lg bg-emerald-900"
     >
-      <tr class="flex mb-4 pr-3 pl-2 relative">
+      <tr *ngIf="!minifiedSubOperationView" class="flex mb-4 pr-3 pl-2 relative">
         <td class="w-6 flex justify-center">💰</td>
         <td class="w-full flex justify-between ml-2">
           <p class="pl-[0.1rem]">Valor:</p>
@@ -137,8 +139,8 @@
     *ngIf="subOperations"
     [subOperations]="subOperations"
     (maximize)="maximizeSubOperation = !maximizeSubOperation"
-    [ngClass]="{ '!rounded-xl': maximizeSubOperation }"
-    class="h-full w-full mt-4 p-3 pt-[5px] bg-emerald-900 rounded-lg flex flex-col relative overflow-hidden"
+    [class.mt-4]="!maximizeSubOperation"
+    class="h-full w-full p-3 pt-[5px] bg-emerald-900 rounded-lg flex flex-col relative overflow-hidden"
   ></app-sub-operations-table>
   <div
     #buttonsRow

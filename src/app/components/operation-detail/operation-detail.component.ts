@@ -29,6 +29,7 @@ import {
   animations: [fadeInOnEnterAnimation(), fadeOutOnLeaveAnimation()],
 })
 export class OperationDetailComponent implements OnInit {
+  @Input() minifiedSubOperationView?: 'true'  
   @Input() operation!: Operation
   @Output() onClose = new EventEmitter<boolean>()
 
