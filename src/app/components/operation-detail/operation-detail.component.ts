@@ -37,6 +37,7 @@ export class OperationDetailComponent implements OnInit {
   confirmDeletion?: boolean
 
   subOperations: Operation[] | null = null;
+  maximizeSubOperation = false;
 
   selectedPackage: Package | null = null
   selectedPackageId?: number

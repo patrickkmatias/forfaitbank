@@ -34,6 +34,7 @@
     </div>
 
     <table
+      *ngIf="!maximizeSubOperation"
       class="w-full h-fit flex flex-col mt-4 pt-4 rounded-t-lg bg-emerald-900"
     >
       <tr class="flex mb-4 pr-3 pl-2 relative">
@@ -134,11 +135,14 @@
   </div>
   <app-sub-operations-table
     *ngIf="subOperations"
-    class="h-full w-full mt-4 p-3 pt-[5px] bg-emerald-900 rounded-lg flex flex-col relative overflow-hidden"
     [subOperations]="subOperations"
+    (maximize)="maximizeSubOperation = !maximizeSubOperation"
+    [ngClass]="{ '!rounded-xl': maximizeSubOperation }"
+    class="h-full w-full mt-4 p-3 pt-[5px] bg-emerald-900 rounded-lg flex flex-col relative overflow-hidden"
   ></app-sub-operations-table>
   <div
     #buttonsRow
+    *ngIf="!maximizeSubOperation"
     class="flex self-end mt-2"
   >
     <!-- Error message -->
