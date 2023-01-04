@@ -1,44 +1,70 @@
 <!-- Minimized Operation View -->
 <li
-  class="w-full h-auto relative p-4 flex justify-between bg-emerald-800"
+  class="w-full h-auto relative p-4 bg-emerald-800"
+  [ngClass]="{ 'px-2 flex justify-center': minifiedSubOperationView }"
   *ngIf="!showDetail"
 >
-  <div>
-    <h2 class="mb-2 text-xl font-medium text-emerald-100">
-      {{ operation.name }}
-    </h2>
-    <div
-      class="w-fit h-fit px-2 py-1 flex items-center bg-emerald-900 rounded-lg text-emerald-100"
-    >
-      <p
-        class="font-medium"
-        [class.!text-yellow-100]="operation.status === 'reserved'"
+  <div
+    *ngIf="!minifiedSubOperationView"
+    class="flex justify-between"
+  >
+    <div class="font-medium text-sm sm:text-base">
+      <h2 class="mb-2 text-xl text-emerald-100">
+        {{ operation.name }}
+      </h2>
+      <div
+        class="w-fit h-fit px-2 py-1 flex items-center bg-emerald-900 rounded-lg text-emerald-100"
       >
-        {{ status }}
-      </p>
-      <span
-        class="mx-1 font-bold text-emerald-800"
-        *ngIf="operation.parentOperationId"
-        >|</span
-      >
-      <p
-        class="text-xs font-medium"
-        *ngIf="operation.parentOperationId"
-      >
-        Sub-operação {{ operation.subId }}
+        <p [class.!text-yellow-100]="operation.status === 'reserved'">
+          {{ status }}
+        </p>
+        <span
+          *ngIf="operation.parentOperationId"
+          class="flex items-center"
+        >
+          <span class="mx-1 font-bold text-emerald-800">|</span>
+          <p>Sub-operação {{ operation.subId }}</p>
+        </span>
+      </div>
+      <p class="ml-1 mt-1 text-base">
+        Valor: {{ operation.value | currency : "BRL" }}
       </p>
     </div>
-    <p class="ml-1 mt-1">Valor: {{ operation.value | currency : "BRL" }}</p>
+    <button
+      #showDetailButton
+      *ngIf="!loadingDetail"
+      (click)="loadOperation()"
+      title="Ver mais informações da operação"
+      class="w-8 h-8 mb-1 mr-1 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative"
+    >
+      <app-icon icon="three-dots"></app-icon>
+    </button>
   </div>
-  <button
-    #showDetailButton
-    *ngIf="!loadingDetail"
-    (click)="loadOperation()"
-    title="Ver mais informações da operação"
-    class="w-8 h-8 mb-1 mr-1 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative"
+  <div
+    *ngIf="minifiedSubOperationView"
+    class="flex"
   >
-    <app-icon icon="three-dots"></app-icon>
-  </button>
+    <div
+      class="w-fit h-fit p-2 flex items-center bg-emerald-900 rounded-lg text-emerald-100 font-medium text-xs sm:text-base"
+    >
+      <p>Sub-operação {{ operation.subId }}</p>
+      <span class="mx-1 font-bold text-emerald-800">|</span>
+      <p [class.!text-yellow-100]="operation.status === 'reserved'">
+        {{ status }}
+      </p>
+      <span class="mx-1 font-bold text-emerald-800">|</span>
+      <p>{{ operation.value | currency : "BRL" }}</p>
+    </div>
+    <button
+      #showDetailButton
+      *ngIf="!loadingDetail"
+      (click)="loadOperation()"
+      title="Ver mais informações da operação"
+      class="w-8 h-8 ml-2 mb-1 mr-1 flex justify-center items-center self-end bg-emerald-700 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 relative"
+    >
+      <app-icon icon="three-dots"></app-icon>
+    </button>
+  </div>
 </li>
 <div
   #divisionLine
@@ -79,7 +105,7 @@
     *ngIf="showCancel"
     [@fadeInOnEnter]
     [@fadeOutOnLeave]
-    (click)="cancel()" 
+    (click)="cancel()"
     class="w-fit py-1 px-3 bg-emerald-700 flex items-center justify-center hover:cursor-pointer mb-8 rounded-lg cursor-pointer hover:scale-125 origin-center transition-all duration-500 shadow-md"
   >
     Voltar

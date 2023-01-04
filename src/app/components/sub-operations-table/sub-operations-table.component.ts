@@ -16,6 +16,7 @@ import { Operation } from "src/app/models/operation.model"
           <app-operation
             *ngFor="let op of subOperations"
             id="{{ op.id }}"
+            minifiedSubOperationView="true"
             [operation]="op"
             [class.hidden]="
               selectedOperationId > 0 && selectedOperationId !== op.id
@@ -32,6 +33,8 @@ export class SubOperationsTableComponent implements OnInit {
   @Input() parentOperation!: Operation
   @Input() subOperations!: Operation[]
   @Output() maximize = new EventEmitter<boolean>()
+
+  showSub = true
 
   private _selectedOperationId: number = -1
 

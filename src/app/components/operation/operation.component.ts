@@ -15,6 +15,7 @@ import {
 })
 export class OperationComponent implements OnInit {
   constructor(private operationService: OperationService) {}
+  @Input() minifiedSubOperationView?: 'true'
   @Input() operation!: Operation
   @Output() selectIndex = new EventEmitter<number>()
 
