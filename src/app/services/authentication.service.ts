@@ -18,8 +18,15 @@ export class AuthenticationService {
       return this.api.postFormData("/auth/signin", user);
    }
 
-   isLoggedIn(): boolean {
-      return localStorage.getItem("isLoggedIn") == "true" ? true : false;
+   async signinAsGuest(): Promise<void> {
+      if (this.getGuest()) {
+         return this.setSession(this.getGuest()!)
+      }
+
+      const req = this.api.post<{ access_token: string }>("/guest/create")
+      const { access_token } = await firstValueFrom(req)
+      
+      return this.setGuest(access_token)
    }
 
    setSession(token: string) {
@@ -40,8 +47,21 @@ export class AuthenticationService {
       return localStorage.getItem("access_token");
    }
 
+   setGuest(token: string) {
+      localStorage.setItem("guest_token", token);
+      return this.setSession(token);
+   }
+
+   getGuest(): string | null {
+      return localStorage.getItem("guest_token");
+   }
+
    logout() {
       localStorage.removeItem("access_token");
       return localStorage.setItem("isLoggedIn", "false");
+   }
+   
+   isLoggedIn(): boolean {
+      return localStorage.getItem("isLoggedIn") == "true" ? true : false;
    }
 }

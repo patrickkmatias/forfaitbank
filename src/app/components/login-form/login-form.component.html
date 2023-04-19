@@ -46,7 +46,7 @@
     type="submit"
     (click)="submitForm()"
     [disabled]="this.form.invalid || ui.feedback != undefined"
-    class="flex relative top-0 left-0 justify-center px-4 py-2 mt-6 w-full text-sm font-medium text-white bg-emerald-800 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
+    class="flex relative top-0 left-0 justify-center px-4 py-2 mt-6 w-full text-sm font-medium text-white bg-emerald-800 rounded-md transition-all duration-500 hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     Fazer login
   </button>
@@ -56,10 +56,20 @@
     id="showRegisterFormButton"
     (click)="closeForm()"
     [disabled]="ui.feedback != undefined"
-    class="relative px-4 py-2 mt-6 mb-10 w-full text-sm font-medium text-gray-600 bg-emerald-200 rounded-md border border-transparent transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
+    class="relative px-4 py-2 mt-6 mb-10 w-full text-sm font-medium text-gray-600 bg-emerald-200 rounded-md transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50"
   >
     Não tem conta? <br />
     Faça seu cadastro!
+  </button>
+
+  <button
+    #testButton
+    (click)="signinAsGuest()"
+    [disabled]="ui.feedback != undefined"
+    class="relative px-4 py-2 mt-6 mb-10 w-full text-sm font-medium text-emerald-100 hover:text-gray-600 rounded-md transition-all duration-500 hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+  >
+    Tem pressa? <br />
+    Acesse como teste!
   </button>
 
   <!-- START - Form submit result feedback -->

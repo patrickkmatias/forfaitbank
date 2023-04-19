@@ -75,6 +75,15 @@ export class LoginFormComponent implements OnInit {
       });
    }
 
+   async signinAsGuest() {
+      this.setFeedback("loading")
+      await this.auth.signinAsGuest().then(
+         () => this.setFeedback("success"),
+         () => this.setFeedback("error")
+      )
+
+   }
+
    closeForm() {
       gsap.to("#loginForm", {
          opacity: 0,
